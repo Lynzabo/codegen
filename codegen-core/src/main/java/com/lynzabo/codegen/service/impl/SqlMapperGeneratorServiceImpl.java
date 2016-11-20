@@ -31,7 +31,7 @@ public class SqlMapperGeneratorServiceImpl implements Generator {
         Map<String,Object> dataItems = new HashMap<String,Object>();
         dataItems.put("entityName",renderDataDTO.getEntityName());
         try {
-            FreemarkerUtil.renderToFile(dataItems, "sqlMapper.ftl", MessageFormat.format("{0}/{1}.xml", sqlMapperDTO.getLocation(), sqlMapperDTO.getName()));
+            FreemarkerUtil.renderToFile(dataItems, sqlMapperDTO.getFtl(), MessageFormat.format("{0}/{1}.xml", sqlMapperDTO.getLocation(), sqlMapperDTO.getName()));
         } catch (Exception e) {
             throw new CodegenException(e);
         }

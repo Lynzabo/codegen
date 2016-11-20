@@ -30,12 +30,16 @@ public class DaoGeneratorServiceImpl implements Generator {
         RenderDataDTO renderDataDTO = genDTO.getRenderDataDTO();
         Map<String,Object> dataItems = new HashMap<String,Object>();
         dataItems.put("entityName", renderDataDTO.getEntityName());
-        Map properties = daoDTO.getProperties();
-        dataItems.putAll(properties);
-        Map propertiesMap = CodegenConfig.getInstance().getProperties();
-        dataItems.putAll(propertiesMap);
+        dataItems.put("remark", renderDataDTO.getTableRemark());
+        //dao properties
+        Map daoPropsMap = daoDTO.getProperties();
+        dataItems.putAll(daoPropsMap);
+        //global properties
+        Map globalPropsMaps = CodegenConfig.getInstance().getProperties();
+        dataItems.putAll(globalPropsMaps);
+
         try {
-            FreemarkerUtil.renderToFile(dataItems, "dao.ftl", MessageFormat.format("{0}/{1}/{2}.java", daoDTO.getLocation(),daoDTO.getMpackage().replace(".", "/") ,daoDTO.getName()));
+            FreemarkerUtil.renderToFile(dataItems, daoDTO.getFtl(), MessageFormat.format("{0}/{1}/{2}.java", daoDTO.getLocation(),daoDTO.getMpackage().replace(".", "/") ,daoDTO.getName()));
         } catch (Exception e) {
             throw new CodegenException(e);
         }

@@ -151,7 +151,7 @@ public enum CodegenConfig {
                 daoDTOBuilder.setProperties(daoPropertiesMap);
             genDTOBuilder.setDaoDTO(daoDTOBuilder.build());
         }
-        //TODO service
+        //service
     }
 
     //解析表信息
