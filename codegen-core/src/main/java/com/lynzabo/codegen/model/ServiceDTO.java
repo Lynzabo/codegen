@@ -4,6 +4,7 @@
 package com.lynzabo.codegen.model;
 
 import java.io.Serializable;
+import java.util.Map;
 
 /**
  *  service信息
@@ -32,6 +33,10 @@ public class ServiceDTO implements Serializable {
      * 介绍
      */
     private String description;
+    /**
+     * 自定义生成器环境变量
+     */
+    private Map properties;
 
     public String getLocation() {
         return location;
@@ -51,6 +56,11 @@ public class ServiceDTO implements Serializable {
     public String getMpackage() {
         return mpackage;
     }
+
+    public Map getProperties() {
+        return properties;
+    }
+
     public static class ServiceDTOBuilder implements Serializable{
         private ServiceDTO serviceDTO = new ServiceDTO();
         public ServiceDTO build() {
@@ -77,6 +87,11 @@ public class ServiceDTO implements Serializable {
 
         public ServiceDTOBuilder setDescription(String description) {
             serviceDTO.description = description;
+            return this;
+        }
+
+        public ServiceDTOBuilder setProperties(Map properties) {
+            serviceDTO.properties = properties;
             return this;
         }
     }

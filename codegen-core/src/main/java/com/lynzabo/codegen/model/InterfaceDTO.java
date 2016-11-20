@@ -4,6 +4,7 @@
 package com.lynzabo.codegen.model;
 
 import java.io.Serializable;
+import java.util.Map;
 
 /**
  *  interface信息
@@ -28,6 +29,10 @@ public class InterfaceDTO implements Serializable {
      * 介绍
      */
     private String description;
+    /**
+     * 自定义生成器环境变量
+     */
+    private Map properties;
 
     public String getLocation() {
         return location;
@@ -44,6 +49,11 @@ public class InterfaceDTO implements Serializable {
     public String getDescription() {
         return description;
     }
+
+    public Map getProperties() {
+        return properties;
+    }
+
     public static class InterfaceDTOBuilder implements Serializable {
         private InterfaceDTO interfaceDTO = new InterfaceDTO();
         public InterfaceDTO build() {
@@ -66,6 +76,11 @@ public class InterfaceDTO implements Serializable {
 
         public InterfaceDTOBuilder setDescription(String description) {
             interfaceDTO.description = description;
+            return this;
+        }
+
+        public InterfaceDTOBuilder setProperties(Map properties) {
+            interfaceDTO.properties = properties;
             return this;
         }
     }

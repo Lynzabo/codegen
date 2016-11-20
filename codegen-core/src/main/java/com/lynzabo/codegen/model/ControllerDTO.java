@@ -4,6 +4,7 @@
 package com.lynzabo.codegen.model;
 
 import java.io.Serializable;
+import java.util.Map;
 
 /**
  *  controller信息
@@ -40,6 +41,10 @@ public class ControllerDTO implements Serializable {
      * 介绍
      */
     private String description;
+    /**
+     * 自定义生成器环境变量
+     */
+    private Map properties;
 
     public String getMpackage() {
         return mpackage;
@@ -66,6 +71,11 @@ public class ControllerDTO implements Serializable {
     public String getDescription() {
         return description;
     }
+
+    public Map getProperties() {
+        return properties;
+    }
+
     public static class ControllerDTOBuilder implements Serializable{
         private ControllerDTO controllerDTO = new ControllerDTO();
         public ControllerDTO build() {
@@ -101,6 +111,11 @@ public class ControllerDTO implements Serializable {
 
         public ControllerDTOBuilder setDescription(String description) {
             controllerDTO.description = description;
+            return this;
+        }
+
+        public ControllerDTOBuilder setProperties(Map properties) {
+            controllerDTO.properties = properties;
             return this;
         }
     }

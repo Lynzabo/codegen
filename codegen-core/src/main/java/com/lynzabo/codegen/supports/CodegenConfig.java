@@ -82,7 +82,7 @@ public enum CodegenConfig {
             SqlMapperDTO.SqlMapperDTOBuilder sqlMapperDTOBuilder = new SqlMapperDTO.SqlMapperDTOBuilder();
             sqlMapperDTOBuilder.setLocation(
                     (null == sqlMapperMap.get("location") || StringUtil.isEmpty((String) sqlMapperMap.get("location"))) ?
-                            "":(String)sqlMapperMap.get("location")
+                            "" : (String) sqlMapperMap.get("location")
             ).setName(
                     (null == sqlMapperMap.get("name") || StringUtil.isEmpty((String) sqlMapperMap.get("name"))) ?
                             "" : (String) sqlMapperMap.get("name")
@@ -120,7 +120,7 @@ public enum CodegenConfig {
                     (null == modelMap.get("description") || StringUtil.isEmpty((String) modelMap.get("description"))) ?
                             "" : (String) modelMap.get("description")
             );
-            Map modelPropertiesMap = (Map) sqlMapperMap.get("properties");
+            Map modelPropertiesMap = (Map) modelMap.get("properties");
             if(!CollectionUtils.isEmpty(modelPropertiesMap))
                 modelDTOBuilder.setProperties(modelPropertiesMap);
             genDTOBuilder.setModelDTO(modelDTOBuilder.build());
@@ -146,12 +146,147 @@ public enum CodegenConfig {
                     (null == daoMap.get("description") || StringUtil.isEmpty((String) daoMap.get("description"))) ?
                             "" : (String) daoMap.get("description")
             );
-            Map daoPropertiesMap = (Map) sqlMapperMap.get("properties");
+            Map daoPropertiesMap = (Map) daoMap.get("properties");
             if(!CollectionUtils.isEmpty(daoPropertiesMap))
                 daoDTOBuilder.setProperties(daoPropertiesMap);
             genDTOBuilder.setDaoDTO(daoDTOBuilder.build());
         }
         //service
+        Map serviceMap = (Map) genMap.get("service");
+        if (!CollectionUtils.isEmpty(serviceMap)) {
+            ServiceDTO.ServiceDTOBuilder serviceDTOBuilder = new ServiceDTO.ServiceDTOBuilder();
+            serviceDTOBuilder.setLocation(
+                    (null == serviceMap.get("location") || StringUtil.isEmpty((String) serviceMap.get("location"))) ?
+                            "" : (String) serviceMap.get("location")
+            ).setMpackage(
+                    (null == serviceMap.get("package") || StringUtil.isEmpty((String) serviceMap.get("package"))) ?
+                            "" : (String) serviceMap.get("package")
+            ).setName(
+                    (null == serviceMap.get("name") || StringUtil.isEmpty((String) serviceMap.get("name"))) ?
+                            "" : (String) serviceMap.get("name")
+            );
+            if ((null == serviceMap.get("ftl") || StringUtil.isEmpty((String) serviceMap.get("ftl"))))
+                throw new CodegenException("config.yaml配置gen > service > ftl为空!");
+            serviceDTOBuilder.setFtl((String) serviceMap.get("ftl"));
+            serviceDTOBuilder.setDescription(
+                    (null == serviceMap.get("description") || StringUtil.isEmpty((String) serviceMap.get("description"))) ?
+                            "" : (String) serviceMap.get("description")
+            );
+            Map servicePropertiesMap = (Map) serviceMap.get("properties");
+            if(!CollectionUtils.isEmpty(servicePropertiesMap))
+                serviceDTOBuilder.setProperties(servicePropertiesMap);
+            genDTOBuilder.setServiceDTO(serviceDTOBuilder.build());
+        }
+        //serviceImpl
+        Map serviceImplMap = (Map) genMap.get("serviceImpl");
+        if (!CollectionUtils.isEmpty(serviceImplMap)) {
+            ServiceImplDTO.ServiceImplDTOBuilder serviceImplDTOBuilder = new ServiceImplDTO.ServiceImplDTOBuilder();
+            serviceImplDTOBuilder.setLocation(
+                    (null == serviceImplMap.get("location") || StringUtil.isEmpty((String) serviceImplMap.get("location"))) ?
+                            "" : (String) serviceImplMap.get("location")
+            ).setMpackage(
+                    (null == serviceImplMap.get("package") || StringUtil.isEmpty((String) serviceImplMap.get("package"))) ?
+                            "" : (String) serviceImplMap.get("package")
+            ).setName(
+                    (null == serviceImplMap.get("name") || StringUtil.isEmpty((String) serviceImplMap.get("name"))) ?
+                            "" : (String) serviceImplMap.get("name")
+            ).setServiceIOCName(
+                    (null == serviceImplMap.get("serviceIOCName") || StringUtil.isEmpty((String) serviceImplMap.get("serviceIOCName"))) ?
+                            "" : (String) serviceImplMap.get("serviceIOCName")
+            );
+            if ((null == serviceImplMap.get("ftl") || StringUtil.isEmpty((String) serviceImplMap.get("ftl"))))
+                throw new CodegenException("config.yaml配置gen > serviceImpl > ftl为空!");
+            serviceImplDTOBuilder.setFtl((String) serviceImplMap.get("ftl"));
+            serviceImplDTOBuilder.setDescription(
+                    (null == serviceImplMap.get("description") || StringUtil.isEmpty((String) serviceImplMap.get("description"))) ?
+                            "" : (String) serviceImplMap.get("description")
+            );
+            Map serviceImplPropertiesMap = (Map) serviceImplMap.get("properties");
+            if(!CollectionUtils.isEmpty(serviceImplPropertiesMap))
+                serviceImplDTOBuilder.setProperties(serviceImplPropertiesMap);
+            genDTOBuilder.setServiceImplDTO(serviceImplDTOBuilder.build());
+        }
+        //controller
+        Map controllerMap = (Map) genMap.get("controller");
+        if (!CollectionUtils.isEmpty(controllerMap)) {
+            ControllerDTO.ControllerDTOBuilder controllerDTOBuilder = new ControllerDTO.ControllerDTOBuilder();
+            controllerDTOBuilder.setLocation(
+                    (null == controllerMap.get("location") || StringUtil.isEmpty((String) controllerMap.get("location"))) ?
+                            "":(String)controllerMap.get("location")
+            ).setMpackage(
+                    (null == controllerMap.get("package") || StringUtil.isEmpty((String) controllerMap.get("package"))) ?
+                            "" : (String) controllerMap.get("package")
+            ).setName(
+                    (null == controllerMap.get("name") || StringUtil.isEmpty((String) controllerMap.get("name"))) ?
+                            "" : (String) controllerMap.get("name")
+            ).setControllerIOCName(
+                    (null == controllerMap.get("controllerIOCName") || StringUtil.isEmpty((String) controllerMap.get("controllerIOCName"))) ?
+                            "" : (String) controllerMap.get("controllerIOCName")
+            ).setRequestMapping(
+                    (null == controllerMap.get("requestMapping") || StringUtil.isEmpty((String) controllerMap.get("requestMapping"))) ?
+                            "" : (String) controllerMap.get("requestMapping")
+            );
+            if ((null == controllerMap.get("ftl") || StringUtil.isEmpty((String) controllerMap.get("ftl"))))
+                throw new CodegenException("config.yaml配置gen > controller > ftl为空!");
+            controllerDTOBuilder.setFtl((String) controllerMap.get("ftl"));
+            controllerDTOBuilder.setDescription(
+                    (null == controllerMap.get("description") || StringUtil.isEmpty((String) controllerMap.get("description"))) ?
+                            "" : (String) controllerMap.get("description")
+            );
+            Map controllerPropertiesMap = (Map) controllerMap.get("properties");
+            if(!CollectionUtils.isEmpty(controllerPropertiesMap))
+                controllerDTOBuilder.setProperties(controllerPropertiesMap);
+            genDTOBuilder.setControllerDTO(controllerDTOBuilder.build());
+        }
+        //enumeration
+        Map enumerationMap = (Map) genMap.get("enumeration");
+        if (!CollectionUtils.isEmpty(enumerationMap)) {
+            EnumerationDTO.EnumerationDTOBuilder enumerationDTOBuilder = new EnumerationDTO.EnumerationDTOBuilder();
+            enumerationDTOBuilder.setLocation(
+                    (null == enumerationMap.get("location") || StringUtil.isEmpty((String) enumerationMap.get("location"))) ?
+                            "" : (String) enumerationMap.get("location")
+            ).setMpackage(
+                    (null == enumerationMap.get("package") || StringUtil.isEmpty((String) enumerationMap.get("package"))) ?
+                            "" : (String) enumerationMap.get("package")
+            ).setName(
+                    (null == enumerationMap.get("name") || StringUtil.isEmpty((String) enumerationMap.get("name"))) ?
+                            "" : (String) enumerationMap.get("name")
+            );
+            if ((null == enumerationMap.get("ftl") || StringUtil.isEmpty((String) enumerationMap.get("ftl"))))
+                throw new CodegenException("config.yaml配置gen > enumeration > ftl为空!");
+            enumerationDTOBuilder.setFtl((String) enumerationMap.get("ftl"));
+            enumerationDTOBuilder.setDescription(
+                    (null == enumerationMap.get("description") || StringUtil.isEmpty((String) enumerationMap.get("description"))) ?
+                            "" : (String) enumerationMap.get("description")
+            );
+            Map enumerationPropertiesMap = (Map) enumerationMap.get("properties");
+            if(!CollectionUtils.isEmpty(enumerationPropertiesMap))
+                enumerationDTOBuilder.setProperties(enumerationPropertiesMap);
+            genDTOBuilder.setEnumerationDTO(enumerationDTOBuilder.build());
+        }
+        //interface
+        Map interfaceMap = (Map) genMap.get("interface");
+        if (!CollectionUtils.isEmpty(interfaceMap)) {
+            InterfaceDTO.InterfaceDTOBuilder interfaceDTOBuilder = new InterfaceDTO.InterfaceDTOBuilder();
+            interfaceDTOBuilder.setLocation(
+                    (null == interfaceMap.get("location") || StringUtil.isEmpty((String) interfaceMap.get("location"))) ?
+                            "" : (String) interfaceMap.get("location")
+            ).setName(
+                    (null == interfaceMap.get("name") || StringUtil.isEmpty((String) interfaceMap.get("name"))) ?
+                            "" : (String) interfaceMap.get("name")
+            );
+            if ((null == interfaceMap.get("ftl") || StringUtil.isEmpty((String) interfaceMap.get("ftl"))))
+                throw new CodegenException("config.yaml配置gen > interface > ftl为空!");
+            interfaceDTOBuilder.setFtl((String) interfaceMap.get("ftl"));
+            interfaceDTOBuilder.setDescription(
+                    (null == interfaceMap.get("description") || StringUtil.isEmpty((String) interfaceMap.get("description"))) ?
+                            "" : (String) interfaceMap.get("description")
+            );
+            Map interfacePropertiesMap = (Map) interfaceMap.get("properties");
+            if(!CollectionUtils.isEmpty(interfacePropertiesMap))
+                interfaceDTOBuilder.setProperties(interfacePropertiesMap);
+            genDTOBuilder.setInterfaceDTO(interfaceDTOBuilder.build());
+        }
     }
 
     //解析表信息

@@ -29,8 +29,10 @@ public class DaoGeneratorServiceImpl implements Generator {
         DaoDTO daoDTO = genDTO.getDaoDTO();
         RenderDataDTO renderDataDTO = genDTO.getRenderDataDTO();
         Map<String,Object> dataItems = new HashMap<String,Object>();
+        //ftl需要
         dataItems.put("entityName", renderDataDTO.getEntityName());
         dataItems.put("remark", renderDataDTO.getTableRemark());
+
         //dao properties
         Map daoPropsMap = daoDTO.getProperties();
         dataItems.putAll(daoPropsMap);

@@ -4,6 +4,7 @@
 package com.lynzabo.codegen.model;
 
 import java.io.Serializable;
+import java.util.Map;
 
 /**
  *  enumeration信息
@@ -32,6 +33,11 @@ public class EnumerationDTO implements Serializable {
      * 介绍
      */
     private String description;
+    /**
+     * 自定义生成器环境变量
+     */
+    private Map properties;
+
     public String getMpackage() {
         return mpackage;
     }
@@ -50,6 +56,11 @@ public class EnumerationDTO implements Serializable {
     public String getDescription() {
         return description;
     }
+
+    public Map getProperties() {
+        return properties;
+    }
+
     public static class EnumerationDTOBuilder  implements Serializable {
         private EnumerationDTO enumerationDTO = new EnumerationDTO();
         public EnumerationDTO build() {
@@ -76,6 +87,11 @@ public class EnumerationDTO implements Serializable {
 
         public EnumerationDTOBuilder setDescription(String description) {
             enumerationDTO.description = description;
+            return this;
+        }
+
+        public EnumerationDTOBuilder setProperties(Map properties) {
+            enumerationDTO.properties = properties;
             return this;
         }
     }
