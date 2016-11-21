@@ -79,22 +79,26 @@ public class RenderDataDTO implements Serializable {
     }
 
     public static class Column implements Serializable {
-        /**TODO
+        /**
          * 列字段类型
          */
-        //private String dbType;
-        /**TODO
+        private String dbType;
+        /**
          * 数据长度
          */
-        //private String dbLength;
-        /**TODO
+        private int dbLength;
+        /**
+         * 是否是主键
+         */
+        private boolean isPK;
+        /**
          * 可以为空
          */
-        //private boolean canNull;
-        /**TODO
-         * 默认值
+        private boolean canNull;
+        /**
+         * 是否自动增长
          */
-        //private String defaultValue;
+        private boolean autoIncr;
         /**
          * JAVA类型
          */
@@ -107,6 +111,46 @@ public class RenderDataDTO implements Serializable {
          * 备注
          */
         private String remark;
+
+        public String getDbType() {
+            return dbType;
+        }
+
+        public void setDbType(String dbType) {
+            this.dbType = dbType;
+        }
+
+        public int getDbLength() {
+            return dbLength;
+        }
+
+        public void setDbLength(int dbLength) {
+            this.dbLength = dbLength;
+        }
+
+        public boolean getIsPK() {
+            return isPK;
+        }
+
+        public void setIsPK(boolean isPK) {
+            this.isPK = isPK;
+        }
+
+        public boolean getIsCanNull() {
+            return canNull;
+        }
+
+        public void setCanNull(boolean canNull) {
+            this.canNull = canNull;
+        }
+
+        public boolean getIsAutoIncr() {
+            return autoIncr;
+        }
+
+        public void setAutoIncr(boolean autoIncr) {
+            this.autoIncr = autoIncr;
+        }
 
         public String getJavaType() {
             return javaType;

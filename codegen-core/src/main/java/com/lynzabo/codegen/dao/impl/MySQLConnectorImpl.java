@@ -14,9 +14,10 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.text.MessageFormat;
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * MySQL数据库连接
@@ -69,25 +70,6 @@ public class MySQLConnectorImpl implements Connector {
         }
         return databaseMetaData;
     }
-
-    public Map<String, String> getPrimaryKey(String tableName) {
-        Map<String, String> map = new HashMap<String, String>();
-        ResultSet pkRSet = null;
-        try {
-            pkRSet = getDatabaseMetaData().getPrimaryKeys(null, null, tableName);
-            while (pkRSet.next()) {
-                String primaryKey = pkRSet.getString("COLUMN_NAME");
-                String primaryKeyType = getColumnNameType(pkRSet.getString("TABLE_NAME")).get(primaryKey);
-                map.put("primaryKey", primaryKey);
-                map.put("primaryKeyType", primaryKeyType);
-            }
-        } catch (SQLException e) {
-            throw new CodegenException(e);
-        }
-
-        return map;
-    }
-
     public String getTableRemark(String tableName) {
         String[] types = { "TABLE","VIEW" };//从表/视图查看
         ResultSet rs = null;
@@ -109,20 +91,27 @@ public class MySQLConnectorImpl implements Connector {
     }
 
     public Map<String, RenderDataDTO.Column> getColumns(String tableName) {
-        Map<String, RenderDataDTO.Column> columnMap = new HashMap<String, RenderDataDTO.Column>();
+        Map<String, RenderDataDTO.Column> columnMap = new LinkedHashMap<String, RenderDataDTO.Column>();//有序Map
         DatabaseMetaData meta = getDatabaseMetaData();
         ResultSet colRet = null;
         try {
+            Set<String> primaryKeys = getPrimaryKey(tableName);
             colRet = meta.getColumns(null, "%", tableName, "%");
             while (colRet.next()) {
                 RenderDataDTO.Column column = new RenderDataDTO.Column();
                 String columnName = colRet.getString("COLUMN_NAME");
                 //字段类型
                 int digits = colRet.getInt("DECIMAL_DIGITS");
+                //获取字段MySQL数据类型
                 int dataType = colRet.getInt("DATA_TYPE");
                 String columnRemark = colRet.getString("REMARKS");
                 String columnType = getDataType(dataType, digits);
-                //column.setDbLength();
+                //获取字段MySQL数据类型String类型
+                column.setDbType(colRet.getString("TYPE_NAME"));
+                column.setDbLength(colRet.getInt("COLUMN_SIZE"));
+                column.setIsPK(primaryKeys.contains(columnName));
+                column.setCanNull(colRet.getBoolean("NULLABLE"));
+                column.setAutoIncr(colRet.getBoolean("IS_AUTOINCREMENT"));
                 column.setJavaType(columnType);
                 column.setJavaObject(StringUtil.underline2Camel(columnName, false));
                 //如果注释为空，直接取对象名称
@@ -151,42 +140,21 @@ public class MySQLConnectorImpl implements Connector {
         }
         throw new CodegenException(MessageFormat.format("表{0}不存在",table));
     }
-
-    public Map<String, String> getColumnNameType(String tableName) {
-        Map<String, String> colMap = new LinkedHashMap<String, String>();
-        DatabaseMetaData meta = getDatabaseMetaData();
-        ResultSet colRet = null;
+    private Set<String> getPrimaryKey(String tableName){
+        Set<String> pkeys = new HashSet<String>();
+        ResultSet pkRSet = null;
         try {
-            colRet = meta.getColumns(null, "%", tableName, "%");
-            while (colRet.next()) {
-                String columnName = colRet.getString("COLUMN_NAME");
-                int digits = colRet.getInt("DECIMAL_DIGITS");
-                int dataType = colRet.getInt("DATA_TYPE");
-                String columnType = getDataType(dataType, digits);
-                colMap.put(columnName, columnType);
+            pkRSet = getDatabaseMetaData().getPrimaryKeys(null, null, tableName);
+            while (pkRSet.next()) {
+                String primaryKey = pkRSet.getString("COLUMN_NAME");
+                pkeys.add(primaryKey);
             }
         } catch (SQLException e) {
             throw new CodegenException(e);
         }
-        return colMap;
-    }
-    public Map<String, String> getColumnRemark(String tableName) {
-        Map<String, String> colMap = new LinkedHashMap<String, String>();
-        DatabaseMetaData meta = getDatabaseMetaData();
-        ResultSet colRet = null;
-        try {
-            colRet = meta.getColumns(null, "%", tableName, "%");
-            while (colRet.next()) {
-                String columnName = colRet.getString("COLUMN_NAME");
-                String columnRemark = colRet.getString("REMARKS");
-                colMap.put(columnName, columnRemark);
-            }
-        } catch (SQLException e) {
-            throw new CodegenException(e);
-        }
-        return colMap;
-    }
 
+        return pkeys;
+    }
     private String getDataType(int type, int digits) {
         String dataType = "";
         switch (type) {

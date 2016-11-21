@@ -32,11 +32,6 @@ public interface Connector {
      * @return
      */
     DatabaseMetaData getDatabaseMetaData();
-    /**
-     * 获取表的键值类型
-     * @param tableName
-     */
-    Map<String, String> getPrimaryKey(String tableName);
 
     /**
      * 获取表/视图备注
@@ -51,16 +46,6 @@ public interface Connector {
      * @return
      */
     Map<String,RenderDataDTO.Column> getColumns(String tableName);
-    /**
-     * 获取表/视图各字段类型
-     * @param tableName
-     */
-    Map<String, String> getColumnNameType(String tableName);
-    /**
-     * 获取表/视图各字段备注
-     * @param tableName
-     */
-    Map<String, String> getColumnRemark(String tableName);
 
     /**
      * 检查表/视图是否存在

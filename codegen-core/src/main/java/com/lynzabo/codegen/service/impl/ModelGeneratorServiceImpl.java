@@ -11,6 +11,7 @@ import com.lynzabo.codegen.service.Generator;
 import com.lynzabo.codegen.supports.CodegenConfig;
 import com.lynzabo.codegen.supports.FreemarkerUtil;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.text.MessageFormat;
 import java.util.*;
@@ -51,10 +52,12 @@ public class ModelGeneratorServiceImpl extends AbstractGeneratorServiceImpl impl
         dataItems.put("columns", columns);
         //model properties
         Map modelPropsMap = modelDTO.getProperties();
-        dataItems.putAll(modelPropsMap);
+        if(!CollectionUtils.isEmpty(modelPropsMap))
+            dataItems.putAll(modelPropsMap);
         //global properties
         Map globalPropsMaps = CodegenConfig.getInstance().getProperties();
-        dataItems.putAll(globalPropsMaps);
+        if(!CollectionUtils.isEmpty(globalPropsMaps))
+            dataItems.putAll(globalPropsMaps);
         try {
             FreemarkerUtil.renderToFile(dataItems, modelDTO.getFtl(), MessageFormat.format("{0}/{1}/{2}.java", getModelLocation(), getModelPackage().replace(".", "/"), getEntityName()));
         } catch (Exception e) {

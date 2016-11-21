@@ -10,6 +10,7 @@ import com.lynzabo.codegen.service.Generator;
 import com.lynzabo.codegen.supports.CodegenConfig;
 import com.lynzabo.codegen.supports.FreemarkerUtil;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.text.MessageFormat;
 import java.util.HashMap;
@@ -36,10 +37,12 @@ public class DaoGeneratorServiceImpl extends AbstractGeneratorServiceImpl implem
 
         //dao properties
         Map daoPropsMap = daoDTO.getProperties();
-        dataItems.putAll(daoPropsMap);
+        if(!CollectionUtils.isEmpty(daoPropsMap))
+            dataItems.putAll(daoPropsMap);
         //global properties
         Map globalPropsMaps = CodegenConfig.getInstance().getProperties();
-        dataItems.putAll(globalPropsMaps);
+        if(!CollectionUtils.isEmpty(globalPropsMaps))
+            dataItems.putAll(globalPropsMaps);
         try {
             FreemarkerUtil.renderToFile(dataItems, daoDTO.getFtl(), MessageFormat.format("{0}/{1}/{2}.java", getDaoLocation(), getDaoPackage().replace(".", "/"), getDaoName()));
         } catch (Exception e) {

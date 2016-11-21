@@ -11,6 +11,7 @@ import com.lynzabo.codegen.supports.CodegenConfig;
 import com.lynzabo.codegen.supports.FreemarkerUtil;
 import com.lynzabo.codegen.util.StringUtil;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.text.MessageFormat;
 import java.util.HashMap;
@@ -43,10 +44,12 @@ public class ServiceImplGeneratorServiceImpl extends AbstractGeneratorServiceImp
 
         //serviceImpl properties
         Map serviceImplPropsMap = serviceImplDTO.getProperties();
-        dataItems.putAll(serviceImplPropsMap);
+        if(!CollectionUtils.isEmpty(serviceImplPropsMap))
+            dataItems.putAll(serviceImplPropsMap);
         //global properties
         Map globalPropsMaps = CodegenConfig.getInstance().getProperties();
-        dataItems.putAll(globalPropsMaps);
+        if(!CollectionUtils.isEmpty(globalPropsMaps))
+            dataItems.putAll(globalPropsMaps);
         try {
             FreemarkerUtil.renderToFile(dataItems, serviceImplDTO.getFtl(), MessageFormat.format("{0}/{1}/{2}.java", getServiceImplLocation(), getServiceImplPackage().replace(".", "/"), getServiceImplName()));
         } catch (Exception e) {

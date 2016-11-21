@@ -19,6 +19,28 @@ import java.text.MessageFormat;
  */
 @Service("generatorService")
 public abstract class AbstractGeneratorServiceImpl implements Generator {
+
+    /**
+     * 获取sqlMapper location
+     * @return
+     */
+    protected String getSqlMapperLocation(){
+        GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
+        SqlMapperDTO sqlMapperDTO = genDTO.getSqlMapperDTO();
+        return StringUtil.isEmpty(sqlMapperDTO.getLocation())?"src/main/resources/mybatis" : sqlMapperDTO.getLocation();
+    }
+    /**
+     * 获取SqlMapper名称
+     * @return
+     */
+    protected String getSqlMapperName(){
+        GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
+        SqlMapperDTO sqlMapperDTO = genDTO.getSqlMapperDTO();
+        if(null == sqlMapperDTO || StringUtil.isEmpty(sqlMapperDTO.getName())){
+            return MessageFormat.format("I{0}Mapper", getKeywordName());
+        }
+        return sqlMapperDTO.getName();
+    }
     /**
      * 获取Model的Package
      * @return
