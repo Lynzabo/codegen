@@ -1,14 +1,14 @@
 ${copyright}
-package com.letv.portal.dao.sql;
+package ${daoPackage};
 
+import ${modelPackage}.${entityName};
 import com.letv.common.dao.IBaseDao;
-import com.letv.portal.model.sql.DbSqlModel;
 
 /**
-*
+* ${daoDescription}
 * @author ${author} .
-* @since 2016年11月08日, 15:31 .
-* @version 1.0 .
+* @since ${(.now?string(sice))!} .
+* @version ${version} .
 */
-public interface IDbSqlDao extends IBaseDao<DbSqlModel> {
+public interface ${daoName} extends IBaseDao<${entityName}> {
 }

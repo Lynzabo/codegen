@@ -125,7 +125,8 @@ public class MySQLConnectorImpl implements Connector {
                 //column.setDbLength();
                 column.setJavaType(columnType);
                 column.setJavaObject(StringUtil.underline2Camel(columnName, false));
-                column.setRemark(columnRemark);
+                //如果注释为空，直接取对象名称
+                column.setRemark(StringUtil.isEmpty(columnRemark)?columnType:columnRemark);
                 columnMap.put(columnName,column);
             }
         } catch (SQLException e) {

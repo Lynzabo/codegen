@@ -18,7 +18,7 @@ gen:
   package: com.lynzabo.testmybatis
   # 如下几个模块，填写哪块，生成哪块
   # mapper.xml信息
-  sqlMapper:
+  sqlMapper:  # TODO
     # 生成位置  可选  默认{projectPath}/src/main/resources/mybatis
     location: src/main/resources/mybatis
     # 自定义名称 可选  默认I{table驼峰命名}Mapper
@@ -38,10 +38,10 @@ gen:
     # 生成包名称  可选  默认{package}.model
     package: com.lynzabo.testmybatis.model
     # 生成类名  可选  默认{table驼峰命名}Model
-    name: UserModel
+#    name: UserModel
     # 使用模板
     ftl: model.ftl
-    # 介绍  可选  默认为{table表名注释} 实体 如果表名注释为“用户管理”，则此为用户管理 实体
+    # 介绍  可选  默认为{table表名注释} 实体 如果表名注释为“用户管理”，则此为用户管理 实体，如果表注释为空，则为{类名} 实体
     description: "用户实体"
     # 自定义生成器环境变量  请在ftl里面按照yaml数据类型获取使用
     properties:
@@ -96,6 +96,7 @@ gen:
     # 自定义生成器环境变量  请在ftl里面按照yaml数据类型获取使用
     properties:
       var1: 'test'
+  proxy:
 
   # controller信息
   controller:

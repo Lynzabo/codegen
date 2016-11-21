@@ -56,6 +56,38 @@ public final class StringUtil {
         camelStr = (firstNameIsUpper ? sb.substring(0, 1).toUpperCase():sb.substring(0, 1).toLowerCase()) + sb.substring(1);
         return camelStr;
     }
+
+    /**
+     * 修改字符串第一个字母为大写
+     * @param string
+     * @return
+     */
+    public static String firstUpper(String string) {
+        String str = string.substring(0, 1).toUpperCase() + string.substring(1);
+        return str;
+    }
+
+    /**
+     * 字符串截断1，并修改第一个字符为小写
+     * 如字符串aSDfg，经该接口后变成sDfg。
+     * @param string
+     * @return
+     */
+    public static String sub1Upper(String string) {
+        String sr = string.substring(1);
+        sr = sr.substring(0,1).toLowerCase() + sr.substring(1);
+        return sr;
+    }
+
+    /**
+     * 字符串首字符小写
+     * @param sr
+     * @return
+     */
+    public static String firstLower(String sr) {
+        sr = sr.substring(0,1).toLowerCase() + sr.substring(1);
+        return sr;
+    }
     /*public static final char UNDERLINE='_';
     public static String camelToUnderline(String param){
         if (param==null||"".equals(param.trim())){
