@@ -36,13 +36,17 @@ public class ModelGeneratorServiceImpl extends AbstractGeneratorServiceImpl impl
         Set<String> importSets = new HashSet<String>();
         for (RenderDataDTO.Column column : columns) {
             String value = column.getJavaType();
-            if ("BigDecimal".equals(value) && !importSets.contains("BigDecimal")) {
+            if(value.contains("."))
+                importSets.add("import "+value+";");
+            /*if ("BigDecimal".equals(value) && !importSets.contains("BigDecimal")) {
                 importSets.add("import java.math.BigDecimal;");
             } else if ("Date".equals(value) && !importSets.contains("Date")) {
                 importSets.add("import java.util.Date;");
             } else if ("Timestamp".equals(value) && !importSets.contains("Timestamp")) {
                 importSets.add("import java.sql.Timestamp;");
-            }
+            } else if ("Time".equals(value) && !importSets.contains("Time")) {
+                importSets.add("import java.sql.Time;");
+            }*/
         }
         dataItems.put("imports",importSets);
 

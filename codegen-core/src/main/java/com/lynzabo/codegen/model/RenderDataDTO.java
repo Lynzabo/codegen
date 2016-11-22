@@ -84,6 +84,10 @@ public class RenderDataDTO implements Serializable {
          */
         private String dbType;
         /**
+         * jdbc 类型
+         */
+        private String jdbcType;
+        /**
          * 数据长度
          */
         private int dbLength;
@@ -174,6 +178,14 @@ public class RenderDataDTO implements Serializable {
 
         public void setRemark(String remark) {
             this.remark = remark;
+        }
+
+        public void setJdbcType(String jdbcType) {
+            this.jdbcType = jdbcType;
+        }
+
+        public String getJdbcType() {
+            return jdbcType;
         }
     }
 }

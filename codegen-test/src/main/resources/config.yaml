@@ -5,8 +5,96 @@ datasource:
   username: webportal
   password: "webportal"
 
+# sql -> Java 类型映射
+# 除java.包下不需要带类路径，其他都需要带类路径
+mapper:
+  BIGINT:
+    jdbcType: BIGINT
+    javaType: Long
+  BINARY:
+    jdbcType: BINARY
+    javaType: byte[]
+  BIT:
+    jdbcType: BIT
+    javaType: Boolean
+  BLOB:
+    jdbcType: LONGVARBINARY
+    javaType: byte[]
+  CHAR:
+    jdbcType: CHAR
+    javaType: String
+  DATE:
+    jdbcType: DATE
+    javaType: java.util.Date
+  DATETIME:
+    jdbcType: TIMESTAMP
+    javaType: java.util.Date
+  DECIMAL:
+    jdbcType: DECIMAL
+    javaType: Long
+  DOUBLE:
+    jdbcType: DOUBLE
+    javaType: Double
+  ENUM:
+    jdbcType: CHAR
+    javaType: String
+  FLOAT:
+    jdbcType: REAL
+    javaType: Float
+  INT:
+    jdbcType: INTEGER
+    javaType: Integer
+  LONGBLOB:
+    jdbcType: LONGVARBINARY
+    javaType: byte[]
+  LONGTEXT:
+    jdbcType: LONGVARCHAR
+    javaType: String
+  MEDIUMBLOB:
+    jdbcType: LONGVARBINARY
+    javaType: byte[]
+  MEDIUMINT:
+    jdbcType: INTEGER
+    javaType: Integer
+  MEDIUMTEXT:
+    jdbcType: LONGVARCHAR
+    javaType: String
+  SET:
+    jdbcType: CHAR
+    javaType: String
+  SMALLINT:
+    jdbcType: SMALLINT
+    javaType: Short
+  TEXT:
+    jdbcType: LONGVARCHAR
+    javaType: String
+  TIME:
+    jdbcType: TIME
+    javaType: java.util.Date
+  TIMESTAMP:
+    jdbcType: TIMESTAMP
+    javaType: java.util.Date
+  TINYBLOB:
+    jdbcType: BINARY
+    javaType: byte[]
+  TINYINT:
+    jdbcType: TINYINT
+    javaType: Byte
+  TINYTEXT:
+    jdbcType: VARCHAR
+    javaType: String
+  VARBINARY:
+    jdbcType: VARBINARY
+    javaType: byte[]
+  VARCHAR:
+    jdbcType: VARCHAR
+    javaType: String
+  YEAR:
+    jdbcType: DATE
+    javaType: java.util.Date
+
 # 要生成的表
-table: WEBPORTAL_DB_SQL
+table: SQL_DUMP
 
 # 生成文件位置
 # 支持两种路径类型
@@ -22,7 +110,7 @@ gen:
     # 生成位置  可选  默认{projectPath}/src/main/resources/mybatis
     location: src/main/resources/mybatis
     # 自定义名称 可选  默认I{table驼峰命名}Mapper
-    name: IUserMapper
+#    name: IUserMapper
     # 使用模板
     ftl: sqlMapper.ftl
     # 介绍  可选  默认为无  如指定，则生成介绍
@@ -39,7 +127,7 @@ gen:
     # 生成包名称  可选  默认{package}.model
     package: com.lynzabo.testmybatis.model
     # 生成类名  可选  默认{table驼峰命名}Model
-    name: UserModel
+#    name: UserModel
     # 使用模板
     ftl: model.ftl
     # 介绍  可选  默认为{table表名注释} 实体 如果表名注释为“用户管理”，则此为用户管理 实体，如果表注释为空，则为{类名} 实体
@@ -55,7 +143,7 @@ gen:
     # 生成包名称  可选  默认{package}.dao
     package: com.lynzabo.testmybatis.dao
     # 生成接口名  可选  默认I{table驼峰命名}Dao
-    name: IUserDao
+#    name: IUserDao
     # 使用模板
     ftl: dao.ftl
     # 介绍  可选  默认为{table表名注释} dao 如果表名注释为“用户管理”，则此为用户管理 dao
@@ -71,7 +159,7 @@ gen:
     # 生成包名称  可选  默认{package}.service
     package: com.lynzabo.testmybatis.service
     # 生成接口名  可选  默认I{table驼峰命名}Service
-    name: IUserService
+#    name: IUserService
     # 使用模板
     ftl: service.ftl
     # 介绍  可选  默认为{table表名注释} 服务接口 如果表名注释为“用户管理”，则此为用户管理 服务接口
@@ -87,9 +175,9 @@ gen:
     # 生成包名称  可选  默认{package}.service.impl
     package: com.lynzabo.testmybatis.service.impl
     # 生成类名  可选  默认{table驼峰命名}ServiceImpl
-    name: UserServiceImpl
+#    name: UserServiceImpl
     # Spring 服务层服务注解名称  可选  默认{table驼峰命名，首字母小写}Service  效果@Service("userService")
-    serviceIOCName: userService
+#    serviceIOCName: userService
     # 使用模板
     ftl: serviceImpl.ftl
     # 介绍  可选  默认为{table表名注释} 服务 如果表名注释为“用户管理”，则此为用户管理 服务
@@ -106,11 +194,11 @@ gen:
     # 生成包名称  可选  默认{package}.controller
     package: com.lynzabo.testmybatis.controller
     # 生成类名  可选  默认{table驼峰命名}Controller
-    name: UserController
+#    name: UserController
     # Spring Controller层注解名称  可选  默认为@Controller  如下制定为userController  则生成效果@Controller("userController")
-    controllerIOCName: userController
+#    controllerIOCName: userController
     # SpringMVC Controller层注解名称  可选  默认为{table驼峰命名}  效果@RequestMapping("/user")
-    requestMapping: user
+#    requestMapping: user
     # 使用模板
     ftl: controller.ftl
     # 介绍  可选  默认为{table表名注释} controller 如果表名注释为“用户管理”，则此为用户管理 controller
@@ -126,7 +214,7 @@ gen:
     # 生成包名称  可选  默认{package}.enumeration
     package: com.lynzabo.testmybatis.enumeration
     # 生成枚举名  可选  默认{table驼峰命名}Status
-    name: UserStatus
+#    name: UserStatus
     # 使用模板
     ftl: enumeration.ftl
     # 介绍  可选  默认为{table表名注释} enumeration 如果表名注释为“用户管理”，则此为用户管理 enumeration
@@ -138,7 +226,7 @@ gen:
   # interface信息 TODO
   interface:
     location: src/main/java
-    name: UserStatus
+#    name: UserStatus
     # 使用模板
     ftl: enumeration.ftl
     description: "用户enumeration"

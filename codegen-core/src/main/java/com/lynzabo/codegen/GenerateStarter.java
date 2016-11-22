@@ -9,7 +9,6 @@ import com.lynzabo.codegen.model.GenDTO;
 import com.lynzabo.codegen.service.Generator;
 import com.lynzabo.codegen.supports.CodegenConfig;
 import com.lynzabo.codegen.supports.SpringContextUtil;
-import com.lynzabo.codegen.util.FileUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -33,15 +32,10 @@ public class GenerateStarter {
         logger.debug("initialize codegen");
         //1、校验并解析配置信息
         logger.debug("=====> init config");
-        try {
-            CodegenConfig.getInstance().initConfig();
-        } catch (Exception e) {
-            logger.error("init config error!",e);
-        }
+        CodegenConfig.getInstance().initConfig();
         //2、初始化数据库连接信息
         logger.debug("=====> init connection");
         connector.getConnection();
-        String reallyDir = FileUtil.getReallyDir("e:/lecloud");
         //3、检查环境（包括表都存在与否），检查表/视图是否存在
         connector.checkTablesIsExist();
         //4.准备codegen大本营常量信息
@@ -108,7 +102,7 @@ public class GenerateStarter {
             }
             logger.debug("render ok!");
         } catch (CodegenException e) {
-            logger.error("render error",e);
+            throw new CodegenException("render error",e);
         }
     }
 }

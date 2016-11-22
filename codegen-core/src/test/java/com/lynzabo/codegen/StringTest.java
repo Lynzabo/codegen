@@ -16,4 +16,5 @@ public class StringTest {
         String user_info = StringUtil.underline2Camel("WEBPORTAL_USER_INFO",false);
         System.out.println(user_info);
     }
+
 }

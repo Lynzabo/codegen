@@ -8,9 +8,9 @@
         <#list cols as col>
             <#assign  column=columnsMap["${col}"]/>
             <#if column.isPK?string("true","false") == 'true'>
-        <id column="${col}" property="${column.javaObject}" jdbcType="${column.dbType}" />
+        <id column="${col}" property="${column.javaObject}" jdbcType="${column.jdbcType}" />
             <#else>
-        <result column="${col}" property="${column.javaObject}" jdbcType="${column.dbType}" <#if column.dbType=='TINYINT'>typeHandler="com.letv.portal.util.mybatis.type.IntValueEnumTypeHandler"</#if>/>
+        <result column="${col}" property="${column.javaObject}" jdbcType="${column.jdbcType}" <#if column.jdbcType=='TINYINT'>typeHandler="com.letv.portal.util.mybatis.type.IntValueEnumTypeHandler"</#if>/>
             </#if>
         </#list>
     </resultMap>
@@ -25,7 +25,7 @@
         <trim suffixOverrides=",">
             <#list cols as col>
                 <#assign  column=columnsMap["${col}"]/>
-                <#switch column.dbType>
+                <#switch column.jdbcType>
                     <#case 'TINYINT'>
             <if test="${column.javaObject} != null">
                 and ${alia+"."+col}=#${"{"+column.javaObject},jdbcType=TINYINT,typeHandler=com.letv.portal.util.mybatis.type.IntValueEnumTypeHandler}
@@ -49,7 +49,7 @@
         <trim suffixOverrides=",">
             <#list cols as col>
                 <#assign  column=columnsMap["${col}"]/>
-                <#switch column.dbType>
+                <#switch column.jdbcType>
                     <#case 'TINYINT'>
             <if test="params != null and ${"params."+column.javaObject} != null">
                 and ${alia+"."+col}=#${"{"+column.javaObject},jdbcType=TINYINT,typeHandler=com.letv.portal.util.mybatis.type.IntValueEnumTypeHandler}
@@ -118,7 +118,7 @@
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <#list cols as col>
                 <#assign  column=columnsMap["${col}"]/>
-                <#switch column.dbType>
+                <#switch column.jdbcType>
                     <#case 'TINYINT'>
             <if test="${column.javaObject} != null">
                 `${col}`,
@@ -159,7 +159,7 @@
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <#list cols as col>
                 <#assign  column=columnsMap["${col}"]/>
-                <#switch column.dbType>
+                <#switch column.jdbcType>
                     <#case 'TINYINT'>
             <if test="${column.javaObject} != null">
                 ${"#{"+column.javaObject+"},"}
@@ -203,7 +203,7 @@
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <#list cols as col>
                 <#assign  column=columnsMap["${col}"]/>
-                <#switch column.dbType>
+                <#switch column.jdbcType>
                     <#case 'TINYINT'>
             <if test="${column.javaObject} != null">
                 `${col}`,
@@ -247,7 +247,7 @@
             <trim prefix="values (" suffix=")" suffixOverrides=",">
                 <#list cols as col>
                     <#assign  column=columnsMap["${col}"]/>
-                    <#switch column.dbType>
+                    <#switch column.jdbcType>
                         <#case 'TINYINT'>
                 <if test="${column.javaObject} != null">
                     ${"#{"+column.javaObject+"},"}
@@ -297,7 +297,7 @@
         <trim prefix="set" suffixOverrides="," suffix="where ${alia}.${r'ID = #{id,jdbcType=BIGINT}'}" >
             <#list cols as col>
                 <#assign  column=columnsMap["${col}"]/>
-                <#switch column.dbType>
+                <#switch column.jdbcType>
                     <#case 'TINYINT'>
             <if test="${column.javaObject} != null">
                 ${alia+"."+col}=#${"{"+column.javaObject},jdbcType=TINYINT,typeHandler=com.letv.portal.util.mybatis.type.IntValueEnumTypeHandler},
@@ -342,7 +342,7 @@
         <trim prefix="set" suffixOverrides="," suffix="where ${alia}.${r'ID = #{id,jdbcType=BIGINT}'}" >
         <#list cols as col>
             <#assign  column=columnsMap["${col}"]/>
-            <#switch column.dbType>
+            <#switch column.jdbcType>
                 <#case 'TINYINT'>
             <if test="${column.javaObject} != null">
                 ${alia+"."+col}=#${"{"+column.javaObject},jdbcType=TINYINT,typeHandler=com.letv.portal.util.mybatis.type.IntValueEnumTypeHandler},

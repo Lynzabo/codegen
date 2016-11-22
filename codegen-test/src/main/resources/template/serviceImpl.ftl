@@ -31,7 +31,7 @@ public class ${serviceImplName} extends BaseServiceImpl<${entityName}> implement
     }
 
     @Override
-    public IBaseDao<${serviceName}> getDao() {
+    public IBaseDao<${entityName}> getDao() {
         return ${daoEnitityName};
     }
 

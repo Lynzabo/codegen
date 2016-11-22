@@ -35,29 +35,41 @@ public enum CodegenConfig {
      */
     public void initConfig() {
         logger.debug("init config!");
+
+        Yaml yaml = new Yaml();
+        URL url = CodegenConfig.class.getClassLoader().getResource("config.yaml");
+        if (null == url) {
+            throw new CodegenException("init config error,未找到config.yaml文件");
+        }
         try {
-            Yaml yaml = new Yaml();
-            URL url = CodegenConfig.class.getClassLoader().getResource("config.yaml");
-            if (url != null) {
-                Map map = (Map) yaml.load(new FileInputStream(url.getFile()));
+            Map map = (Map) yaml.load(new FileInputStream(url.getFile()));
 
-                Map datasourceMap = (Map) map.get("datasource");
-                parseDataSource(datasourceMap);
+            Map datasourceMap = (Map) map.get("datasource");
+            parseDataSource(datasourceMap);
 
-                String tab = (String) map.get("table");
-                parseTable(tab);
+            Map mapperMap = (Map) map.get("mapper");
+            parseMapper(mapperMap);
 
-                Map genMap = (Map) map.get("gen");
-                parseGen(genMap);
+            String tab = (String) map.get("table");
+            parseTable(tab);
 
-                Map propertiesMap = (Map) map.get("properties");
-                parseProperties(propertiesMap);
-            }
+            Map genMap = (Map) map.get("gen");
+            parseGen(genMap);
+
+            Map propertiesMap = (Map) map.get("properties");
+            parseProperties(propertiesMap);
             logger.debug("init success!");
         } catch (Exception ex) {
-            logger.error("initialize codegen error",ex);
+            throw new CodegenException("init config error",ex);
         }
     }
+
+    private void parseMapper(Map mapperMap) {
+        if(CollectionUtils.isEmpty(mapperMap))
+            throw new CodegenException("config.yaml配置mapper为空!");
+        mapper = mapperMap;
+    }
+
     //自定义生成器环境变量
     private void parseProperties(Map propertiesMap) {
         if(CollectionUtils.isEmpty(propertiesMap))
@@ -305,6 +317,14 @@ public enum CodegenConfig {
     }
 
     /**
+     * 获取sql -> Java 类型映射
+     * @return
+     */
+    public Map<String, Map<String, String>> getMapper() {
+        return mapper;
+    }
+
+    /**
      * 获取要gen的所有表
      * @return
      */
@@ -333,6 +353,8 @@ public enum CodegenConfig {
 
     //从配置文件解析数据源信息
     private void parseDataSource(Map datasourceMap){
+        if(CollectionUtils.isEmpty(datasourceMap))
+            throw new CodegenException("config.yaml配置datasource为空!");
         dataSource = new DataSource();
         Object dcn = datasourceMap.get("driverClassName");
         if(null == dcn || StringUtil.isEmpty((String) dcn))
@@ -418,6 +440,10 @@ public enum CodegenConfig {
      * 数据源
      */
     private DataSource dataSource;
+    /**
+     * 类型映射
+     */
+    private Map<String,Map<String,String>> mapper;
     /**
      * 要生成表
      */
