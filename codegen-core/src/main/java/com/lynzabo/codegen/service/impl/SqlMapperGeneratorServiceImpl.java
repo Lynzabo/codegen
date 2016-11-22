@@ -35,12 +35,6 @@ public class SqlMapperGeneratorServiceImpl extends AbstractGeneratorServiceImpl 
         dataItems.put("entityName",getEntityName());
         dataItems.put("columnsMap", genDTO.getRenderDataDTO().getColumns());
         dataItems.put("table", table);
-        /*dataItems.put("servicePackage", getServicePackage());
-        dataItems.put("modelPackage",getModelPackage());
-        dataItems.put("entityName",getEntityName());
-        dataItems.put("serviceName", getServiceName());
-        dataItems.put("serviceDescription", getServiceDescription());*/
-
         //sqlMapper properties
         Map sqlMapperPropsMap = sqlMapperDTO.getProperties();
         if(!CollectionUtils.isEmpty(sqlMapperPropsMap))
