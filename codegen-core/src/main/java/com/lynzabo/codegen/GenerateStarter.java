@@ -31,10 +31,8 @@ public class GenerateStarter {
     private void initialize(){
         logger.debug("initialize codegen");
         //1、校验并解析配置信息
-        logger.debug("=====> init config");
         CodegenConfig.getInstance().initConfig();
         //2、初始化数据库连接信息
-        logger.debug("=====> init connection");
         connector.getConnection();
         //3、检查环境（包括表都存在与否），检查表/视图是否存在
         connector.checkTablesIsExist();

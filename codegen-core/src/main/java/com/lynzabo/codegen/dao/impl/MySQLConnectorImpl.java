@@ -34,7 +34,7 @@ public class MySQLConnectorImpl implements Connector {
     public Connection getConnection() {
         if(null != conn)
             return conn;
-        logger.debug("connect to MySQL server!");
+        logger.debug("connect to MySQL server");
         Connection connection = null;
         try {
             CodegenConfig.DataSource dataSource = CodegenConfig.getInstance().getDataSource();
@@ -44,7 +44,6 @@ public class MySQLConnectorImpl implements Connector {
             String password = dataSource.getPassword();
             Class.forName(driverClassName);
             connection = DriverManager.getConnection(url, userName, password);
-            logger.debug("connected!");
         } catch (Exception ex) {
             throw new CodegenException(ex);
         }
@@ -126,6 +125,7 @@ public class MySQLConnectorImpl implements Connector {
     }
 
     public void checkTablesIsExist() {
+        logger.debug("check table status");
         String table = CodegenConfig.getInstance().getTable();
         String[] types = { "TABLE","VIEW" };
         ResultSet rs = null;

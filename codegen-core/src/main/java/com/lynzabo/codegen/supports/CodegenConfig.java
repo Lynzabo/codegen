@@ -34,7 +34,7 @@ public enum CodegenConfig {
      * 解析配置
      */
     public void initConfig() {
-        logger.debug("init config!");
+        logger.debug("init config");
 
         Yaml yaml = new Yaml();
         URL url = CodegenConfig.class.getClassLoader().getResource("config.yaml");
@@ -58,7 +58,6 @@ public enum CodegenConfig {
 
             Map propertiesMap = (Map) map.get("properties");
             parseProperties(propertiesMap);
-            logger.debug("init success!");
         } catch (Exception ex) {
             throw new CodegenException("init config error",ex);
         }

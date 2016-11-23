@@ -256,7 +256,7 @@ gen:
     properties:
       var1: 'test'
 
-  # interface信息 TODO
+  # interface信息
   interface:
     location: src/main/java
 #    name: UserStatus
