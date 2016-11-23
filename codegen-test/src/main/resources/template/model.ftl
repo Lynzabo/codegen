@@ -35,7 +35,7 @@ public class ${entityName} extends BaseModel {
     public ${types?last} get${column.javaObject?cap_first}() {
         return ${column.javaObject};
     }
-    public void set${column.javaObject?cap_first}(${types?last} ${column.javaObject}){} {
+    public void set${column.javaObject?cap_first}(${types?last} ${column.javaObject}) {
         this.${column.javaObject} = ${column.javaObject};
     }
         </#list>

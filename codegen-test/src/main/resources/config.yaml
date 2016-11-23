@@ -89,9 +89,6 @@ mapper:
   VARCHAR:
     jdbcType: VARCHAR
     javaType: String
-  YEAR:
-    jdbcType: DATE
-    javaType: java.util.Date
 
 # 要生成的表
 table: SQL_DUMP

@@ -52,17 +52,17 @@
                 <#switch column.jdbcType>
                     <#case 'TINYINT'>
             <if test="params != null and ${"params."+column.javaObject} != null">
-                and ${alia+"."+col}=#${"{"+column.javaObject},jdbcType=TINYINT,typeHandler=com.letv.portal.util.mybatis.type.IntValueEnumTypeHandler}
+                and ${alia+"."+col}=#${"{params."+column.javaObject},jdbcType=TINYINT,typeHandler=com.letv.portal.util.mybatis.type.IntValueEnumTypeHandler}
             </if>
                         <#break>
                     <#case 'VARCHAR'>
             <if test="params != null and ${"params."+column.javaObject} != null and ${"params."+column.javaObject} != ''  ">
-                and ${alia+"."+col}=#${"{"+column.javaObject}}
+                and ${alia+"."+col}=#${"{params."+column.javaObject}}
             </if>
                         <#break>
                     <#default>
             <if test="params != null and ${"params."+column.javaObject} != null  ">
-                and ${alia+"."+col}=#${"{"+column.javaObject}}
+                and ${alia+"."+col}=#${"{params."+column.javaObject}}
             </if>
                 </#switch>
             </#list>
@@ -110,8 +110,8 @@
         <include refid="Base_Where_Clause" />
     </select>
     <delete id="delete" parameterType="${entityName}" >
-        delete from ${table} ${alia}
-        where ${alia}.ID = ${r'#{id,jdbcType=BIGINT}'}
+        delete from ${table}
+        where ID = ${r'#{id,jdbcType=BIGINT}'}
     </delete>
     <insert id="insert" parameterType="${entityName}" useGeneratedKeys="true" keyProperty="id">
         insert into ${table}
@@ -198,7 +198,7 @@
             </#list>
         </trim>
     </insert>
-    <insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+    <#--<insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
         insert into ${table}
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <#list cols as col>
@@ -286,11 +286,11 @@
                 </#list>
             </trim>
         </foreach>
-        <!-- 获取上个刚插入的自增ID值 -->
+        <!-- 获取上个刚插入的自增ID值 &ndash;&gt;
         <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="id">
             SELECT LAST_INSERT_ID() AS id
         </selectKey>
-    </insert>
+    </insert>-->
 
     <update id="update" parameterType="${entityName}">
         update ${table} ${alia}
@@ -335,52 +335,5 @@
                 </#switch>
             </#list>
         </trim>
-        where ${alia}.ID=${r'#{id}'}
-    </update>
-    <update id="updateBySelective" parameterType="${entityName}">
-        update ${table} ${alia}
-        <trim prefix="set" suffixOverrides="," suffix="where ${alia}.${r'ID = #{id,jdbcType=BIGINT}'}" >
-        <#list cols as col>
-            <#assign  column=columnsMap["${col}"]/>
-            <#switch column.jdbcType>
-                <#case 'TINYINT'>
-            <if test="${column.javaObject} != null">
-                ${alia+"."+col}=#${"{"+column.javaObject},jdbcType=TINYINT,typeHandler=com.letv.portal.util.mybatis.type.IntValueEnumTypeHandler},
-            </if>
-                    <#break>
-                <#case 'VARCHAR'>
-            <if test="${column.javaObject} != null and ${column.javaObject} != ''">
-                ${alia+"."+col}=#${"{"+column.javaObject}},
-            </if>
-                    <#break>
-                <#case 'BIGINT'>
-                    <#if column.javaObject == 'createUser'>
-                    <#elseif column.javaObject == 'updateUser'>
-            ${alia+"."+col}=${"#{"+column.javaObject+",jdbcType=BIGINT,typeHandler=com.letv.portal.util.mybatis.type.UserTypeHandler},"}
-                    <#else>
-            <if test="${column.javaObject} != null">
-                ${alia+"."+col}=${"#{"+column.javaObject+"},"}
-            </if>
-                    </#if>
-                    <#break>
-                <#case 'DATETIME'>
-                    <#if col=="UPDATE_TIME">
-            ${alia+"."+col}=now(),
-                    <#elseif col=="CREATE_TIME">
-                    <#else>
-            <if test="${column.javaObject} != null  ">
-                ${alia+"."+col}=${"#{"+column.javaObject+"},"}
-            </if>
-                    </#if>
-                    <#break>
-                <#default>
-            <if test="${column.javaObject} != null  ">
-                ${alia+"."+col}=${"#{"+column.javaObject+"},"}
-            </if>
-            </#switch>
-        </#list>
-        </trim>
-        where
-        <include refid="Base_Where_Clause" />
     </update>
 </mapper>
