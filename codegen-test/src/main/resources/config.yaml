@@ -89,6 +89,9 @@ mapper:
   VARCHAR:
     jdbcType: VARCHAR
     javaType: String
+  YEAR:
+    jdbcType: DATE
+    javaType: java.util.Date
 
 # 要生成的表
 table: SQL_DUMP
@@ -182,7 +185,40 @@ gen:
     # 自定义生成器环境变量  请在ftl里面按照yaml数据类型获取使用
     properties:
       var1: 'test'
+
+  # proxy信息
   proxy:
+    # 生成位置  可选  默认{projectPath}/src/main/java
+    location: src/main/java
+    # 生成包名称  可选  默认{package}.proxy
+    package: com.lynzabo.testmybatis.proxy
+    # 生成接口名  可选  默认I{table驼峰命名}Proxy
+#    name: IUserProxy
+    # 使用模板
+    ftl: proxy.ftl
+    # 介绍  可选  默认为{table表名注释} 代理接口 如果表名注释为“用户管理”，则此为用户管理 代理接口
+    description: "用户代理接口"
+    # 自定义生成器环境变量  请在ftl里面按照yaml数据类型获取使用
+    properties:
+      var1: 'test'
+
+  # proxy实现信息
+  proxyImpl:
+    # 生成位置  可选  默认{projectPath}/src/main/java
+    location: src/main/java
+    # 生成包名称  可选  默认{package}.proxy.impl
+    package: com.lynzabo.testmybatis.proxy.impl
+    # 生成类名  可选  默认{table驼峰命名}ProxyImpl
+#    name: UserProxyImpl
+    # Spring component层代理注解名称  可选  默认{table驼峰命名，首字母小写}Proxy  效果@Component("userProxy")
+#    componentIOCName: userProxy
+    # 使用模板
+    ftl: proxyImpl.ftl
+    # 介绍  可选  默认为{table表名注释} 代理 如果表名注释为“用户管理”，则此为用户管理 代理
+    description: "用户代理实现"
+    # 自定义生成器环境变量  请在ftl里面按照yaml数据类型获取使用
+    properties:
+      var1: 'test'
 
   # controller信息
   controller:
