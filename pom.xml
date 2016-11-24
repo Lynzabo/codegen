@@ -185,24 +185,14 @@
     <repositories>
         <!--私有仓库 url-->
         <repository>
-            <id>Matrix-Thirdparty repository</id>
-            <name>Letv.com Repository</name>
-            <url>http://10.75.136.223:8083/nexus/content/repositories/central/</url>
-        </repository>
-        <repository>
             <id>Matrix-Snapshot repository</id>
             <name>Letv.com Repository</name>
-            <url>http://10.75.136.223:8083/nexus/content/repositories/central/</url>
+            <url>http://maven.aliyun.com/nexus/content/repositories/central</url>
         </repository>
         <repository>
             <id>Matrix-Release repository</id>
             <name>Letv.com Repository</name>
-            <url>http://10.75.136.223:8083/nexus/content/repositories/central/</url>
-        </repository>
-        <repository>
-            <id>letv.public repository</id>
-            <name>Letv.com Repository</name>
-            <url>http://10.75.136.223:8083/nexus/content/repositories/central/</url>
+            <url>http://maven.aliyun.com/nexus/content/repositories/central</url>
         </repository>
     </repositories>
     <!--私有仓库配置  end-->
@@ -212,7 +202,7 @@
         <pluginRepository>
             <id>letv.public plugin</id>
             <name>Letv.com Repository</name>
-            <url>http://10.75.136.223:8083/nexus/content/repositories/central/</url>
+            <url>http://maven.aliyun.com/nexus/content/repositories/central</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
