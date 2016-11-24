@@ -61,7 +61,7 @@ public class FreemarkerUtil {
      */
     public static void renderToFile(Map dataItems,String templateName,String outFilePath) throws IOException, TemplateException {
         String abstPath = FileUtil.getReallyDir(outFilePath);
-        logger.debug("render to file,template {},save to path {}",templateName,abstPath);
+        logger.info("render to file,template {},save to path {}",templateName,abstPath);
         Template template = cfg.getTemplate(templateName);
         File fileName = new File(abstPath);
         File dir = new File(fileName.getParent());

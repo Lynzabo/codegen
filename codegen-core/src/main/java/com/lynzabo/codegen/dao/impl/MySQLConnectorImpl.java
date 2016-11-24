@@ -34,7 +34,7 @@ public class MySQLConnectorImpl implements Connector {
     public Connection getConnection() {
         if(null != conn)
             return conn;
-        logger.debug("connect to MySQL server");
+        logger.info("connect to MySQL server");
         Connection connection = null;
         try {
             CodegenConfig.DataSource dataSource = CodegenConfig.getInstance().getDataSource();
@@ -52,7 +52,7 @@ public class MySQLConnectorImpl implements Connector {
     }
 
     public void closeConnection() {
-        logger.debug("close to MySQL server!");
+        logger.info("close to MySQL server!");
         try {
             conn.close();
         } catch (SQLException ex) {
@@ -125,7 +125,7 @@ public class MySQLConnectorImpl implements Connector {
     }
 
     public void checkTablesIsExist() {
-        logger.debug("check table status");
+        logger.info("check table status");
         String table = CodegenConfig.getInstance().getTable();
         String[] types = { "TABLE","VIEW" };
         ResultSet rs = null;

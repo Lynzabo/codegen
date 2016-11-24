@@ -90,15 +90,6 @@
                 <groupId>com.lynzabo.codegen</groupId>
                 <artifactId>codegen-mavenplugin</artifactId>
                 <version>1.0-SNAPSHOT</version>
-                <configuration>
-                    <includes>
-                        <!--include>java</include-->
-                        <include>properties</include>
-                    </includes>
-                    <ratios>
-                        <ratio>1.5</ratio>
-                    </ratios>
-                </configuration>
             </plugin>
         </plugins>
     </build>

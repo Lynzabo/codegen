@@ -20,7 +20,7 @@ import java.util.List;
  * @goal generate
  * @phase process-sources
  */
-public class CodegenMojo extends AbstractMojo {
+public class CodegenGenerateMojo extends AbstractMojo {
     /**
      * @parameter expression="${project.basedir}"
      * @required
@@ -53,7 +53,7 @@ public class CodegenMojo extends AbstractMojo {
      */
     private List<Resource> testResources;
     public void execute() throws MojoExecutionException, MojoFailureException {
-        CodegenMain.start(basedir.getAbsolutePath().replaceAll("\\\\","/")+"/test/resources/codegen.yaml");
+        CodegenMain.start(basedir.getAbsolutePath().replaceAll("\\\\","/")+"/src/test/resources/codegen.yaml");
     }
 
     @Override

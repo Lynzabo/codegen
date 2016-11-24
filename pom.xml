@@ -174,22 +174,22 @@
         <repository>
             <id>Matrix-Thirdparty repository</id>
             <name>Letv.com Repository</name>
-            <url>http://maven.letv.cn/nexus/content/repositories/Matrix-Thirdparty/</url>
+            <url>http://10.75.136.223:8083/nexus/content/repositories/central/</url>
         </repository>
         <repository>
             <id>Matrix-Snapshot repository</id>
             <name>Letv.com Repository</name>
-            <url>http://maven.letv.cn/nexus/content/repositories/Matrix-Snapshot/</url>
+            <url>http://10.75.136.223:8083/nexus/content/repositories/central/</url>
         </repository>
         <repository>
             <id>Matrix-Release repository</id>
             <name>Letv.com Repository</name>
-            <url>http://maven.letv.cn/nexus/content/repositories/Matrix-Release/</url>
+            <url>http://10.75.136.223:8083/nexus/content/repositories/central/</url>
         </repository>
         <repository>
             <id>letv.public repository</id>
             <name>Letv.com Repository</name>
-            <url>http://maven.letv.cn/nexus/content/groups/public/</url>
+            <url>http://10.75.136.223:8083/nexus/content/repositories/central/</url>
         </repository>
     </repositories>
     <!--私有仓库配置  end-->
@@ -199,7 +199,7 @@
         <pluginRepository>
             <id>letv.public plugin</id>
             <name>Letv.com Repository</name>
-            <url>http://maven.letv.cn/nexus/content/groups/public/</url>
+            <url>http://10.75.136.223:8083/nexus/content/repositories/central/</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -214,12 +214,12 @@
         <repository>
             <id>project-release</id>
             <name>Projects Release repository</name>
-            <url>http://maven.letv.cn/nexus/content/repositories/Matrix-Release/</url>
+            <url>http://10.75.136.223:8083/nexus/content/repositories/releases/</url>
         </repository>
         <snapshotRepository>
             <id>project-snapshots</id>
             <name>Projects SnapShot repository</name>
-            <url>http://maven.letv.cn/nexus/content/repositories/Matrix-Snapshot/</url>
+            <url>http://10.75.136.223:8083/nexus/content/repositories/snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
     <!--deploy end-->

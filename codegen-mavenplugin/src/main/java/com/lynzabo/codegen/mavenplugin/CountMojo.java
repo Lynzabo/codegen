@@ -3,69 +3,57 @@
  */
 package com.lynzabo.codegen.mavenplugin;
 
-import org.apache.maven.model.Resource;
-import org.apache.maven.plugin.AbstractMojo;
-import org.apache.maven.plugin.MojoExecutionException;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-/**
+/*
+*//**
  *
  * @goal count
  *
  * @phase process-sources
- */
+ *//*
 public class CountMojo extends AbstractMojo
 {
     private static final String[] INCLUDES_DEFAULT = {"java", "xml", "sql", "properties"};
     private static final String[] RATIOS_DEFAULT = {"1.0", "0.25", "0.25", "0.25"};
     private static final String DOT = ".";
-    /**
+    *//**
      * @parameter expression="${project.basedir}"
      * @required
      * @readonly
-     */
+     *//*
     private File basedir;
-    /**
+    *//**
      * @parameter expression="${project.build.sourceDirectory}"
      * @required
      * @readonly
-     */
+     *//*
     private File sourcedir;
-    /**
+    *//**
      * @parameter expression="${project.build.testSourceDirectory}"
      * @required
      * @readonly
-     */
+     *//*
     private File testSourcedir;
-    /**
+    *//**
      * @parameter expression="${project.resources}"
      * @required
      * @readonly
-     */
+     *//*
     private List<Resource> resources;
     //private List<File> resources;
-    /**
+    *//**
      * @parameter expression="${project.testResources}"
      * @required
      * @readonly
-     */
+     *//*
     private List<Resource> testResources;
     //private List<File> testResources;
-    /**
+    *//**
      * @parameter
-     */
+     *//*
     private String[] includes;
-    /**
+    *//**
      * @parameter
-     */
+     *//*
     private String[] ratios;//TODO 定义为double[],从xml读取时提示java.lang.ClassCastException: [D cannot be cast to [Ljava.lang.Object;
 
     private Map<String, Double> ratioMap = new HashMap<String, Double>();
@@ -199,4 +187,4 @@ public class CountMojo extends AbstractMojo
         }
         return result;
     }
-}
+}*/

@@ -50,7 +50,7 @@
                 <configuration>
                     <!--[WARNING]Goal prefix is specified as: 'maven-statis-plugin'. Maven currently expects it to be 'statis'.-->
                     <!-- goalPrefix>maven-statis-plugin</goalPrefix-->
-                    <goalPrefix>lynstatis</goalPrefix>
+                    <goalPrefix>codegen</goalPrefix>
                 </configuration>
                 <executions>
                     <execution>

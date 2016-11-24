@@ -34,7 +34,7 @@ public enum CodegenConfig {
      * 解析配置
      */
     public void initConfig(String codegenPath) {
-        logger.debug("init config");
+        logger.info("init config,{}", codegenPath);
         if (StringUtil.isEmpty(codegenPath) || !new File(codegenPath).exists()) {
             throw new CodegenException("init config error,未找到config.yaml文件");
         }

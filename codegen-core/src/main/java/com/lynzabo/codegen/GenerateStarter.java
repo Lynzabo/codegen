@@ -29,7 +29,7 @@ public class GenerateStarter {
     private Connector connector;
     //初始化配置信息
     private void initialize(String codegenPath){
-        logger.debug("initialize codegen");
+        logger.info("initialize codegen");
         //1、校验并解析配置信息
         CodegenConfig.getInstance().initConfig(codegenPath);
         //2、初始化数据库连接信息
@@ -38,7 +38,7 @@ public class GenerateStarter {
         connector.checkTablesIsExist();
         //4.准备codegen大本营常量信息
         CodegenConfig.getInstance().checkGenData(connector);
-        logger.debug("initialize ok!");
+        logger.info("initialize ok!");
     }
 
     public void start(String codegenPath){
@@ -60,7 +60,7 @@ public class GenerateStarter {
     }
 
     private void render() {
-        logger.debug("render...");
+        logger.info("render...");
         GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
         try {
             //render sqlMapper
@@ -98,7 +98,7 @@ public class GenerateStarter {
                 Generator generator = (Generator) SpringContextUtil.getBean("interfaceGeneratorService");
                 generator.render();
             }
-            logger.debug("render ok!");
+            logger.info("render ok!");
         } catch (CodegenException e) {
             throw new CodegenException("render error",e);
         }
