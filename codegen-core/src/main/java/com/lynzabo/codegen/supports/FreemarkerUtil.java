@@ -26,7 +26,12 @@ public class FreemarkerUtil {
     private static Configuration cfg = new Configuration();
     static {
         cfg.setEncoding(Locale.getDefault(), "utf-8");
-        cfg.setClassForTemplateLoading(FreemarkerUtil.class, "/template");
+        try {
+            cfg.setDirectoryForTemplateLoading(new File(CodegenConfig.getInstance().getWorkDir() + "/template"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //cfg.setClassForTemplateLoading(FreemarkerUtil.class, "/template");
         Properties settings = new Properties();
         //TODO 都哪些
         settings.setProperty("template_update_delay", "0");

@@ -12,8 +12,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
 import org.yaml.snakeyaml.Yaml;
 
+import java.io.File;
 import java.io.FileInputStream;
-import java.net.URL;
 import java.util.Map;
 
 /**
@@ -33,16 +33,17 @@ public enum CodegenConfig {
     /**
      * 解析配置
      */
-    public void initConfig() {
+    public void initConfig(String codegenPath) {
         logger.debug("init config");
-
-        Yaml yaml = new Yaml();
-        URL url = CodegenConfig.class.getClassLoader().getResource("config.yaml");
-        if (null == url) {
+        if (StringUtil.isEmpty(codegenPath) || !new File(codegenPath).exists()) {
             throw new CodegenException("init config error,未找到config.yaml文件");
         }
         try {
-            Map map = (Map) yaml.load(new FileInputStream(url.getFile()));
+            Yaml yaml = new Yaml();
+            Map map = (Map) yaml.load(new FileInputStream(codegenPath));
+
+            //codegen工作根目录 (codegen.yaml文件和template目录所在目录)
+            workDir = codegenPath.substring(0, codegenPath.lastIndexOf("/"));
 
             Map datasourceMap = (Map) map.get("datasource");
             parseDataSource(datasourceMap);
@@ -350,6 +351,14 @@ public enum CodegenConfig {
         return properties;
     }
 
+    /**
+     * 获取codegen工作根目录 (codegen.yaml文件和template目录所在目录
+     * @return
+     */
+    public String getWorkDir() {
+        return workDir;
+    }
+
     //从配置文件解析数据源信息
     private void parseDataSource(Map datasourceMap){
         if(CollectionUtils.isEmpty(datasourceMap))
@@ -455,4 +464,8 @@ public enum CodegenConfig {
      * 自定义生成器环境变量
      */
     private Map properties;
+    /**
+     * codegen工作根目录 (codegen.yaml文件和template目录所在目录)
+     */
+    private String workDir;
 }

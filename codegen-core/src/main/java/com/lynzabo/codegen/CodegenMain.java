@@ -25,8 +25,8 @@ public class CodegenMain {
             e.printStackTrace();
         }
     }
-    public static void start(){
-        generateStarter.start();
+    public static void start(String codegenPath){
+        generateStarter.start(codegenPath);
         if(context !=null && context instanceof ClassPathXmlApplicationContext){
             ((ClassPathXmlApplicationContext) context).close();
         }

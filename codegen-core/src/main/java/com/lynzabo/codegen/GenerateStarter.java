@@ -28,10 +28,10 @@ public class GenerateStarter {
     @Resource(name = "mysqlConnector")
     private Connector connector;
     //初始化配置信息
-    private void initialize(){
+    private void initialize(String codegenPath){
         logger.debug("initialize codegen");
         //1、校验并解析配置信息
-        CodegenConfig.getInstance().initConfig();
+        CodegenConfig.getInstance().initConfig(codegenPath);
         //2、初始化数据库连接信息
         connector.getConnection();
         //3、检查环境（包括表都存在与否），检查表/视图是否存在
@@ -41,9 +41,9 @@ public class GenerateStarter {
         logger.debug("initialize ok!");
     }
 
-    public void start(){
+    public void start(String codegenPath){
         setBanner();
-        initialize();
+        initialize(codegenPath);
         render();
         connector.closeConnection();
     }

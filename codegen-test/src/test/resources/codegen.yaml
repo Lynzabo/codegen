@@ -1,0 +1,282 @@
+# 数据源定义
+datasource:
+  driverClassName: com.mysql.jdbc.Driver
+  url: jdbc:mysql://10.127.51.199:3306/apitest?useUnicode=true&amp;characterEncoding=utf-8
+  username: webportal
+  password: "webportal"
+
+# sql -> Java 类型映射
+# 除java.包下不需要带类路径，其他都需要带类路径
+mapper:
+  BIGINT:
+    jdbcType: BIGINT
+    javaType: Long
+  BINARY:
+    jdbcType: BINARY
+    javaType: byte[]
+  BIT:
+    jdbcType: BIT
+    javaType: Boolean
+  BLOB:
+    jdbcType: LONGVARBINARY
+    javaType: byte[]
+  CHAR:
+    jdbcType: CHAR
+    javaType: String
+  DATE:
+    jdbcType: DATE
+    javaType: java.util.Date
+  DATETIME:
+    jdbcType: TIMESTAMP
+    javaType: java.util.Date
+  DECIMAL:
+    jdbcType: DECIMAL
+    javaType: Long
+  DOUBLE:
+    jdbcType: DOUBLE
+    javaType: Double
+  ENUM:
+    jdbcType: CHAR
+    javaType: String
+  FLOAT:
+    jdbcType: REAL
+    javaType: Float
+  INT:
+    jdbcType: INTEGER
+    javaType: Integer
+  LONGBLOB:
+    jdbcType: LONGVARBINARY
+    javaType: byte[]
+  LONGTEXT:
+    jdbcType: LONGVARCHAR
+    javaType: String
+  MEDIUMBLOB:
+    jdbcType: LONGVARBINARY
+    javaType: byte[]
+  MEDIUMINT:
+    jdbcType: INTEGER
+    javaType: Integer
+  MEDIUMTEXT:
+    jdbcType: LONGVARCHAR
+    javaType: String
+  SET:
+    jdbcType: CHAR
+    javaType: String
+  SMALLINT:
+    jdbcType: SMALLINT
+    javaType: Short
+  TEXT:
+    jdbcType: LONGVARCHAR
+    javaType: String
+  TIME:
+    jdbcType: TIME
+    javaType: java.util.Date
+  TIMESTAMP:
+    jdbcType: TIMESTAMP
+    javaType: java.util.Date
+  TINYBLOB:
+    jdbcType: BINARY
+    javaType: byte[]
+  TINYINT:
+    jdbcType: TINYINT
+    javaType: Byte
+  TINYTEXT:
+    jdbcType: VARCHAR
+    javaType: String
+  VARBINARY:
+    jdbcType: VARBINARY
+    javaType: byte[]
+  VARCHAR:
+    jdbcType: VARCHAR
+    javaType: String
+  YEAR:
+    jdbcType: DATE
+    javaType: java.util.Date
+
+# 要生成的表
+table: SQL_DUMP
+
+# 生成文件位置
+# 支持两种路径类型
+# 1.绝对路径  eg: e:/workspace/test/src
+# 2.相对路径  eg:src 假如工程在e:/workspace/test下，则生成器会自动处理成e:/workspace/test/src
+# 生成代码配置
+gen:
+  # 生成包名
+  package: com.lynzabo.testmybatis
+  # 如下几个模块，填写哪块，生成哪块
+  # mapper.xml信息
+  sqlMapper:
+    # 生成位置  可选  默认{projectPath}/src/main/resources/mybatis
+    location: src/main/resources/mybatis
+    # 自定义名称 可选  默认I{table驼峰命名}Mapper
+#    name: IUserMapper
+    # 使用模板
+    ftl: sqlMapper.ftl
+    # 介绍  可选  默认为无  如指定，则生成介绍
+    description: "USER sql映射"
+    # 自定义生成器环境变量  请在ftl里面按照yaml数据类型获取使用
+    properties:
+      # 表别名
+#      tableAlia: 'user'
+
+  # model信息
+  model:
+    # 生成位置  可选  默认{projectPath}/src/main/java
+    location: src/main/java
+    # 生成包名称  可选  默认{package}.model
+    package: com.lynzabo.testmybatis.model
+    # 生成类名  可选  默认{table驼峰命名}Model
+#    name: UserModel
+    # 使用模板
+    ftl: model.ftl
+    # 介绍  可选  默认为{table表名注释} 实体 如果表名注释为“用户管理”，则此为用户管理 实体，如果表注释为空，则为{类名} 实体
+    description: "用户实体"
+    # 自定义生成器环境变量  请在ftl里面按照yaml数据类型获取使用
+    properties:
+      var1: 'test'
+
+  # dao信息
+  dao:
+    # 生成位置  可选  默认{projectPath}/src/main/java
+    location: src/main/java
+    # 生成包名称  可选  默认{package}.dao
+    package: com.lynzabo.testmybatis.dao
+    # 生成接口名  可选  默认I{table驼峰命名}Dao
+#    name: IUserDao
+    # 使用模板
+    ftl: dao.ftl
+    # 介绍  可选  默认为{table表名注释} dao 如果表名注释为“用户管理”，则此为用户管理 dao
+    description: "用户dao"
+    # 自定义生成器环境变量  请在ftl里面按照yaml数据类型获取使用
+    properties:
+      var1: 'test'
+
+  # service信息
+  service:
+    # 生成位置  可选  默认{projectPath}/src/main/java
+    location: src/main/java
+    # 生成包名称  可选  默认{package}.service
+    package: com.lynzabo.testmybatis.service
+    # 生成接口名  可选  默认I{table驼峰命名}Service
+#    name: IUserService
+    # 使用模板
+    ftl: service.ftl
+    # 介绍  可选  默认为{table表名注释} 服务接口 如果表名注释为“用户管理”，则此为用户管理 服务接口
+    description: "用户服务接口"
+    # 自定义生成器环境变量  请在ftl里面按照yaml数据类型获取使用
+    properties:
+      var1: 'test'
+
+  # service实现信息
+  serviceImpl:
+    # 生成位置  可选  默认{projectPath}/src/main/java
+    location: src/main/java
+    # 生成包名称  可选  默认{package}.service.impl
+    package: com.lynzabo.testmybatis.service.impl
+    # 生成类名  可选  默认{table驼峰命名}ServiceImpl
+#    name: UserServiceImpl
+    # Spring 服务层服务注解名称  可选  默认{table驼峰命名，首字母小写}Service  效果@Service("userService")
+#    serviceIOCName: userService
+    # 使用模板
+    ftl: serviceImpl.ftl
+    # 介绍  可选  默认为{table表名注释} 服务 如果表名注释为“用户管理”，则此为用户管理 服务
+    description: "用户服务"
+    # 自定义生成器环境变量  请在ftl里面按照yaml数据类型获取使用
+    properties:
+      var1: 'test'
+
+  # proxy信息
+  proxy:
+    # 生成位置  可选  默认{projectPath}/src/main/java
+    location: src/main/java
+    # 生成包名称  可选  默认{package}.proxy
+    package: com.lynzabo.testmybatis.proxy
+    # 生成接口名  可选  默认I{table驼峰命名}Proxy
+#    name: IUserProxy
+    # 使用模板
+    ftl: proxy.ftl
+    # 介绍  可选  默认为{table表名注释} 代理接口 如果表名注释为“用户管理”，则此为用户管理 代理接口
+    description: "用户代理接口"
+    # 自定义生成器环境变量  请在ftl里面按照yaml数据类型获取使用
+    properties:
+      var1: 'test'
+
+  # proxy实现信息
+  proxyImpl:
+    # 生成位置  可选  默认{projectPath}/src/main/java
+    location: src/main/java
+    # 生成包名称  可选  默认{package}.proxy.impl
+    package: com.lynzabo.testmybatis.proxy.impl
+    # 生成类名  可选  默认{table驼峰命名}ProxyImpl
+#    name: UserProxyImpl
+    # Spring component层代理注解名称  可选  默认{table驼峰命名，首字母小写}Proxy  效果@Component("userProxy")
+#    componentIOCName: userProxy
+    # 使用模板
+    ftl: proxyImpl.ftl
+    # 介绍  可选  默认为{table表名注释} 代理 如果表名注释为“用户管理”，则此为用户管理 代理
+    description: "用户代理实现"
+    # 自定义生成器环境变量  请在ftl里面按照yaml数据类型获取使用
+    properties:
+      var1: 'test'
+
+  # controller信息
+  controller:
+    # 生成位置  可选  默认{projectPath}/src/main/java
+    location: src/main/java
+    # 生成包名称  可选  默认{package}.controller
+    package: com.lynzabo.testmybatis.controller
+    # 生成类名  可选  默认{table驼峰命名}Controller
+#    name: UserController
+    # Spring Controller层注解名称  可选  默认为@Controller  如下制定为userController  则生成效果@Controller("userController")
+#    controllerIOCName: userController
+    # SpringMVC Controller层注解名称  可选  默认为{table驼峰命名}  效果@RequestMapping("/user")
+#    requestMapping: user
+    # 使用模板
+    ftl: controller.ftl
+    # 介绍  可选  默认为{table表名注释} controller 如果表名注释为“用户管理”，则此为用户管理 controller
+    description: "用户controller"
+    # 自定义生成器环境变量  请在ftl里面按照yaml数据类型获取使用
+    properties:
+      var1: 'test'
+
+  # enumeration信息
+  enumeration:
+    # 生成位置  可选  默认{projectPath}/src/main/java
+    location: src/main/java
+    # 生成包名称  可选  默认{package}.enumeration
+    package: com.lynzabo.testmybatis.enumeration
+    # 生成枚举名  可选  默认{table驼峰命名}Status
+#    name: UserStatus
+    # 使用模板
+    ftl: enumeration.ftl
+    # 介绍  可选  默认为{table表名注释} enumeration 如果表名注释为“用户管理”，则此为用户管理 enumeration
+    description: "用户enumeration"
+    # 自定义生成器环境变量  请在ftl里面按照yaml数据类型获取使用
+    properties:
+      var1: 'test'
+
+  # interface信息
+  interface:
+    location: src/main/java
+#    name: UserStatus
+    # 使用模板
+    ftl: enumeration.ftl
+    description: "用户enumeration"
+    # 自定义生成器环境变量  请在ftl里面按照yaml数据类型获取使用
+    properties:
+      var1: 'test'
+#    生成md需要的基本接口文本
+
+# 自定义生成器环境变量  请在ftl里面按照yaml数据类型获取使用
+properties:
+  copyright: "/**
+              * Copyright (c) 2016 乐视云计算有限公司（lecloud.com）. All rights reserved
+              */"
+  author: Lynzabo
+  version: 1.0
+  sice: yyyy年MM月dd日, HH:MM
+
+
+
+# controller 支持用@Valid，根据数据库定义非空，长度判断

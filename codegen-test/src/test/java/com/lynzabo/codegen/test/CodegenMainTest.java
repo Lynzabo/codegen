@@ -12,7 +12,7 @@ import com.lynzabo.codegen.CodegenMain;
  * @version 1.0 .
  */
 public class CodegenMainTest {
-    public static void main(String[] args) throws Exception {
-        CodegenMain.start();
+    public static void main(String[] args) {
+        CodegenMain.start(CodegenMainTest.class.getClassLoader().getResource("codegen.yaml").getPath());
     }
 }
