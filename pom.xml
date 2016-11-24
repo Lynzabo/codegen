@@ -13,6 +13,19 @@
         <module>codegen-test</module>
     </modules>
     <packaging>pom</packaging>
+
+    <developers>
+        <developer>
+            <name>Lynzabo</name>
+            <id>Lynzabo</id>
+            <email>linzhanbo@le.com</email>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <timezone>+8</timezone>
+        </developer>
+    </developers>
+
     <properties>
         <!--spring-->
         <org.springframework.version>3.1.0.RELEASE</org.springframework.version>
