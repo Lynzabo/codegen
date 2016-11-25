@@ -11,11 +11,23 @@
     <packaging>jar</packaging>
 
     <name>codegen-core</name>
-    <url>http://maven.apache.org</url>
+    <url>https://github.com/Lynzabo/codegen</url>
+    <description>https://github.com/Lynzabo/codegen</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <organization>
+        <name>Le</name>
+        <url>http://www.le.com</url>
+    </organization>
+
+    <scm>
+        <url>scm:git:git@github.com:Lynzabo/codegen.git</url>
+        <connection>scm:git:git@github.com:Lynzabo/codegen.git</connection>
+        <tag>codegen-core</tag>
+    </scm>
 
     <dependencies>
         <dependency>
@@ -112,8 +124,8 @@
         </dependency>
         <!-- org.aspectj  Aop需要-->
         <dependency>
-            <groupId> org.aspectj</groupId >
-            <artifactId>aspectjweaver</artifactId >
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
         </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>
@@ -139,4 +151,66 @@
             <artifactId>freemarker</artifactId>
         </dependency>
     </dependencies>
+
+    <profiles>
+        <profile>
+            <id>release</id>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>nexus-release</id>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+                </snapshotRepository>
+                <repository>
+                    <id>nexus-release</id>
+                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+                </repository>
+            </distributionManagement>
+            <build>
+                <plugins>
+                    <!-- Source -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>2.2.1</version>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- Javadoc -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>2.9.1</version>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.5</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
