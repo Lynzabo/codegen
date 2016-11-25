@@ -88,6 +88,16 @@ public class GenerateStarter {
                 Generator generator = (Generator) SpringContextUtil.getBean("serviceImplGeneratorService");
                 generator.render();
             }
+            //render proxy
+            if(null != genDTO.getServiceDTO()){
+                Generator generator = (Generator) SpringContextUtil.getBean("proxyGeneratorService");
+                generator.render();
+            }
+            //render proxyImpl
+            if(null != genDTO.getServiceDTO()){
+                Generator generator = (Generator) SpringContextUtil.getBean("proxyImplGeneratorService");
+                generator.render();
+            }
             //render controller
             if(null != genDTO.getServiceDTO()){
                 Generator generator = (Generator) SpringContextUtil.getBean("controllerGeneratorService");

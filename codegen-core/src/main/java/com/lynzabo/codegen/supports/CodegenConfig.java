@@ -218,6 +218,61 @@ public enum CodegenConfig {
                 serviceImplDTOBuilder.setProperties(serviceImplPropertiesMap);
             genDTOBuilder.setServiceImplDTO(serviceImplDTOBuilder.build());
         }
+        //proxy
+        Map proxyMap = (Map) genMap.get("proxy");
+        if (!CollectionUtils.isEmpty(proxyMap)) {
+            ProxyDTO.ProxyDTOBuilder proxyDTOBuilder = new ProxyDTO.ProxyDTOBuilder();
+            proxyDTOBuilder.setLocation(
+                    (null == proxyMap.get("location") || StringUtil.isEmpty((String) proxyMap.get("location"))) ?
+                            "" : (String) proxyMap.get("location")
+            ).setMpackage(
+                    (null == proxyMap.get("package") || StringUtil.isEmpty((String) proxyMap.get("package"))) ?
+                            "" : (String) proxyMap.get("package")
+            ).setName(
+                    (null == proxyMap.get("name") || StringUtil.isEmpty((String) proxyMap.get("name"))) ?
+                            "" : (String) proxyMap.get("name")
+            );
+            if ((null == proxyMap.get("ftl") || StringUtil.isEmpty((String) proxyMap.get("ftl"))))
+                throw new CodegenException("config.yaml配置gen > proxy > ftl为空!");
+            proxyDTOBuilder.setFtl((String) proxyMap.get("ftl"));
+            proxyDTOBuilder.setDescription(
+                    (null == proxyMap.get("description") || StringUtil.isEmpty((String) proxyMap.get("description"))) ?
+                            "" : (String) proxyMap.get("description")
+            );
+            Map proxyPropertiesMap = (Map) proxyMap.get("properties");
+            if(!CollectionUtils.isEmpty(proxyPropertiesMap))
+                proxyDTOBuilder.setProperties(proxyPropertiesMap);
+            genDTOBuilder.setProxyDTO(proxyDTOBuilder.build());
+        }
+        //proxyImpl
+        Map proxyImplMap = (Map) genMap.get("proxyImpl");
+        if (!CollectionUtils.isEmpty(proxyImplMap)) {
+            ProxyImplDTO.ProxyImplDTOBuilder proxyImplDTOBuilder = new ProxyImplDTO.ProxyImplDTOBuilder();
+            proxyImplDTOBuilder.setLocation(
+                    (null == proxyImplMap.get("location") || StringUtil.isEmpty((String) proxyImplMap.get("location"))) ?
+                            "" : (String) proxyImplMap.get("location")
+            ).setMpackage(
+                    (null == proxyImplMap.get("package") || StringUtil.isEmpty((String) proxyImplMap.get("package"))) ?
+                            "" : (String) proxyImplMap.get("package")
+            ).setName(
+                    (null == proxyImplMap.get("name") || StringUtil.isEmpty((String) proxyImplMap.get("name"))) ?
+                            "" : (String) proxyImplMap.get("name")
+            ).setComponentIOCName(
+                    (null == proxyImplMap.get("componentIOCName") || StringUtil.isEmpty((String) proxyImplMap.get("componentIOCName"))) ?
+                            "" : (String) proxyImplMap.get("componentIOCName")
+            );
+            if ((null == proxyImplMap.get("ftl") || StringUtil.isEmpty((String) proxyImplMap.get("ftl"))))
+                throw new CodegenException("config.yaml配置gen > proxyImpl > ftl为空!");
+            proxyImplDTOBuilder.setFtl((String) proxyImplMap.get("ftl"));
+            proxyImplDTOBuilder.setDescription(
+                    (null == proxyImplMap.get("description") || StringUtil.isEmpty((String) proxyImplMap.get("description"))) ?
+                            "" : (String) proxyImplMap.get("description")
+            );
+            Map proxyImplPropertiesMap = (Map) proxyImplMap.get("properties");
+            if(!CollectionUtils.isEmpty(proxyImplPropertiesMap))
+                proxyImplDTOBuilder.setProperties(proxyImplPropertiesMap);
+            genDTOBuilder.setProxyImplDTO(proxyImplDTOBuilder.build());
+        }
         //controller
         Map controllerMap = (Map) genMap.get("controller");
         if (!CollectionUtils.isEmpty(controllerMap)) {

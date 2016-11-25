@@ -41,6 +41,14 @@ public class GenDTO implements Serializable {
      */
     private ServiceImplDTO serviceImplDTO;
     /**
+     * proxy信息
+     */
+    private ProxyDTO proxyDTO;
+    /**
+     * proxy实现信息
+     */
+    private ProxyImplDTO proxyImplDTO;
+    /**
      * controller信息
      */
     private ControllerDTO controllerDTO;
@@ -85,6 +93,14 @@ public class GenDTO implements Serializable {
         return serviceImplDTO;
     }
 
+    public ProxyDTO getProxyDTO() {
+        return proxyDTO;
+    }
+
+    public ProxyImplDTO getProxyImplDTO() {
+        return proxyImplDTO;
+    }
+
     public ControllerDTO getControllerDTO() {
         return controllerDTO;
     }
@@ -103,6 +119,7 @@ public class GenDTO implements Serializable {
 
     public static class GenDTOBuilder implements Serializable{
         private GenDTO genDTO = new GenDTO();
+
         public GenDTO build() {
             return genDTO;
         }
@@ -148,6 +165,14 @@ public class GenDTO implements Serializable {
         }
         public GenDTOBuilder setRenderDataDTO(RenderDataDTO renderDataDTO) {
             genDTO.renderDataDTO = renderDataDTO;
+            return this;
+        }
+        public GenDTOBuilder setProxyDTO(ProxyDTO proxyDTO) {
+            genDTO.proxyDTO = proxyDTO;
+            return this;
+        }
+        public GenDTOBuilder setProxyImplDTO(ProxyImplDTO proxyImplDTO) {
+            genDTO.proxyImplDTO = proxyImplDTO;
             return this;
         }
     }

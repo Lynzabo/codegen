@@ -282,5 +282,204 @@ public abstract class AbstractGeneratorServiceImpl implements Generator {
         ServiceImplDTO serviceImplDTO = genDTO.getServiceImplDTO();
         return StringUtil.isEmpty(serviceImplDTO.getLocation())?"src/main/java" : serviceImplDTO.getLocation();
     }
+    /**
+     * 获取proxy的Package
+     * @return
+     */
+    protected String getProxyPackage(){
+        GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
+        ProxyDTO proxyDTO = genDTO.getProxyDTO();
+        if(null == proxyDTO || StringUtil.isEmpty(proxyDTO.getMpackage()))
+            return genDTO.getMpackage()+".proxy";
+        return proxyDTO.getMpackage();
+    }
+    /**
+     * 获取proxy名称
+     * @return
+     */
+    protected String getProxyName(){
+        GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
+        ProxyDTO proxyDTO = genDTO.getProxyDTO();
+        if(null == proxyDTO || StringUtil.isEmpty(proxyDTO.getName())){
+            return MessageFormat.format("I{0}Proxy", getKeywordName());
+        }
+        return proxyDTO.getName();
+    }
+    /**
+     * 获取proxy location
+     * @return
+     */
+    protected String getProxyLocation(){
+        GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
+        ProxyDTO proxyDTO = genDTO.getProxyDTO();
+        return StringUtil.isEmpty(proxyDTO.getLocation())?"src/main/java" : proxyDTO.getLocation();
+    }
+    /**
+     * 获取proxy的description
+     * @return
+     */
+    protected String getProxyDescription(){
+        GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
+        ProxyDTO proxyDTO = genDTO.getProxyDTO();
+        String desc = "";
+        if(StringUtil.isEmpty(proxyDTO.getDescription())){
+            RenderDataDTO renderDataDTO = genDTO.getRenderDataDTO();
+            String tableRemark = renderDataDTO.getTableRemark();
+            if(StringUtil.isEmpty(tableRemark)){
+                String entityName = renderDataDTO.getEntityName();
+                desc = MessageFormat.format("{0} 代理接口",entityName);
+            }else{
+                desc = MessageFormat.format("{0} 代理接口",tableRemark);
+            }
+        } else
+            desc = proxyDTO.getDescription();
+        return desc;
+    }
+    /**
+     * 获取proxyImpl的Package
+     * @return
+     */
+    protected String getProxyImplPackage(){
+        GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
+        ProxyImplDTO proxyImplDTO = genDTO.getProxyImplDTO();
+        if(null == proxyImplDTO || StringUtil.isEmpty(proxyImplDTO.getMpackage()))
+            return genDTO.getMpackage()+"proxy.impl";
+        return proxyImplDTO.getMpackage();
+    }
+    /**
+     * 获取ProxyImpl的description
+     * @return
+     */
+    protected String getProxyImplDescription(){
+        GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
+        ProxyImplDTO proxyImplDTO = genDTO.getProxyImplDTO();
+        String desc = "";
+        if(StringUtil.isEmpty(proxyImplDTO.getDescription())){
+            RenderDataDTO renderDataDTO = genDTO.getRenderDataDTO();
+            String tableRemark = renderDataDTO.getTableRemark();
+            if(StringUtil.isEmpty(tableRemark)){
+                String entityName = renderDataDTO.getEntityName();
+                desc = MessageFormat.format("{0} 代理",entityName);
+            }else{
+                desc = MessageFormat.format("{0} 代理",tableRemark);
+            }
+        } else
+            desc = proxyImplDTO.getDescription();
+        return desc;
+    }
+    /**
+     * 获取ProxyImpl的proxyIOCName
+     * @return
+     */
+    protected String getProxyIOCName(){
+        GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
+        ProxyImplDTO proxyImplDTO = genDTO.getProxyImplDTO();
+        if(null == proxyImplDTO || StringUtil.isEmpty(proxyImplDTO.getComponentIOCName())){
+            return MessageFormat.format("{0}Proxy", StringUtil.firstUpper(getKeywordName()));
+        }
+        return proxyImplDTO.getComponentIOCName();
+    }
+    /**
+     * 获取ProxyImpl名称
+     * @return
+     */
+    protected String getProxyImplName(){
+        GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
+        ProxyImplDTO proxyImplDTO = genDTO.getProxyImplDTO();
+        if(null == proxyImplDTO || StringUtil.isEmpty(proxyImplDTO.getName())){
+            return MessageFormat.format("{0}ProxyImpl", getKeywordName());
+        }
+        return proxyImplDTO.getName();
+    }
+    /**
+     * 获取ProxyImpl location
+     * @return
+     */
+    protected String getProxyImplLocation(){
+        GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
+        ProxyImplDTO proxyImplDTO = genDTO.getProxyImplDTO();
+        return StringUtil.isEmpty(proxyImplDTO.getLocation())?"src/main/java" : proxyImplDTO.getLocation();
+    }
+    /**
+     * 获取controller的Package
+     * @return
+     */
+    protected String getControllerPackage(){
+        GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
+        ControllerDTO controllerDTO = genDTO.getControllerDTO();
+        if(null == controllerDTO || StringUtil.isEmpty(controllerDTO.getMpackage()))
+            return genDTO.getMpackage()+".controller";
+        return controllerDTO.getMpackage();
+    }
+    /**
+     * 获取controller的description
+     * @return
+     */
+    protected String getControllerDescription(){
+        GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
+        ControllerDTO controllerDTO = genDTO.getControllerDTO();
+        String desc = "";
+        if(StringUtil.isEmpty(controllerDTO.getDescription())){
+            RenderDataDTO renderDataDTO = genDTO.getRenderDataDTO();
+            String tableRemark = renderDataDTO.getTableRemark();
+            if(StringUtil.isEmpty(tableRemark)){
+                String entityName = renderDataDTO.getEntityName();
+                desc = MessageFormat.format("{0} Controller",entityName);
+            }else{
+                desc = MessageFormat.format("{0} Controller",tableRemark);
+            }
+        } else
+            desc = controllerDTO.getDescription();
+        return desc;
+    }
+
+    /**
+     * 获取Controller的controllerIOCName
+     * @return
+     */
+    protected String getControllerIOCName(){
+        GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
+        ControllerDTO controllerDTO = genDTO.getControllerDTO();
+        if(null == controllerDTO || StringUtil.isEmpty(controllerDTO.getControllerIOCName())){
+            return "";
+        }
+        return controllerDTO.getControllerIOCName();
+    }
+
+    /**
+     * 获取Controller的request mapper
+     * @return
+     */
+    protected String getControllerRequestMapping(){
+        GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
+        ControllerDTO controllerDTO = genDTO.getControllerDTO();
+        if(null == controllerDTO || StringUtil.isEmpty(controllerDTO.getRequestMapping())){
+            return getKeywordName();
+        }
+        return controllerDTO.getRequestMapping();
+    }
+
+    /**
+     * 获取controller名称
+     * @return
+     */
+    protected String getControllerName(){
+        GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
+        ControllerDTO controllerDTO = genDTO.getControllerDTO();
+        if(null == controllerDTO || StringUtil.isEmpty(controllerDTO.getName())){
+            return MessageFormat.format("{0}Controller", getKeywordName());
+        }
+        return controllerDTO.getName();
+    }
+
+    /**
+     * 获取Controller location
+     * @return
+     */
+    protected String getControllerLocation(){
+        GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
+        ControllerDTO controllerDTO = genDTO.getControllerDTO();
+        return StringUtil.isEmpty(controllerDTO.getLocation())?"src/main/java" : controllerDTO.getLocation();
+    }
     public abstract void render();
 }
