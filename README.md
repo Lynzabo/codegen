@@ -1,17 +1,11 @@
-## 定位
-   Maven插件、Eclipse插件、IDEA插件、Test Main
-## 遵循generatorConfig.xml定义
-   可以生成API接口文档。
-   codegen生成分类：
-   生mapping.xml   `有`
-   生Model   `有`
-   生dao  `有`
-   生service `有`
-   生serviceImpl   `有`
-   生proxy
-   生proxyImpl
-   生枚举
-   生controller，带@Valid
-   生Markdown文件
+# codegen
+> Java开发，代码生成利器
 
+只要Java开发，大家都用得着。
 
+`codegen介绍`：
+1. 为您的系统定制而生
+2. 可自定义生成类型
+3. 2分钟熟悉使用，5分钟精通。
+
+后续会补充`codegen`门户，敬请期待。
