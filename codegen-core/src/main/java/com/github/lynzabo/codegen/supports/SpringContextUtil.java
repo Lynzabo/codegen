@@ -23,14 +23,14 @@ public class SpringContextUtil implements ApplicationContextAware {
 	/**
 	 * 实现ApplicationContextAware接口的回调方法，设置上下文环境
 	 * 
-	 * @param applicationContext
+	 * @param applicationContext	spring上下文
 	 */
 	public void setApplicationContext(ApplicationContext applicationContext) {
 		SpringContextUtil.applicationContext = applicationContext;
 	}
 
 	/**
-	 * @return ApplicationContext
+	 * @return ApplicationContext	spring上下文
 	 */
 	public static ApplicationContext getApplicationContext() {
 		return applicationContext;
@@ -39,9 +39,9 @@ public class SpringContextUtil implements ApplicationContextAware {
 	/**
 	 * 获取对象
 	 * 这里重写了bean方法，起主要作用
-	 * @param name
+	 * @param name	bean name
 	 * @return Object 一个以所给名字注册的bean的实例
-	 * @throws BeansException
+	 * @throws BeansException	BeansException
 	 */
 	public static Object getBean(String name) throws BeansException {
 		return applicationContext.getBean(name);

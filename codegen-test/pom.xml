@@ -3,7 +3,7 @@
     <parent>
         <artifactId>codegen</artifactId>
         <groupId>com.github.lynzabo.codegen</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0-RELEASE</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -81,7 +81,7 @@
         <dependency>
             <groupId>com.github.lynzabo.codegen</groupId>
             <artifactId>codegen-core</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0-RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
@@ -104,7 +104,7 @@
             <plugin>
                 <groupId>com.github.lynzabo.codegen</groupId>
                 <artifactId>codegen-mavenplugin</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>1.0-RELEASE</version>
             </plugin>
         </plugins>
     </build>

@@ -22,7 +22,7 @@ public abstract class AbstractGeneratorServiceImpl implements Generator {
 
     /**
      * 获取sqlMapper location
-     * @return
+     * @return  sqlMapper location
      */
     protected String getSqlMapperLocation(){
         GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
@@ -31,7 +31,7 @@ public abstract class AbstractGeneratorServiceImpl implements Generator {
     }
     /**
      * 获取SqlMapper名称
-     * @return
+     * @return  SqlMapper名称
      */
     protected String getSqlMapperName(){
         GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
@@ -43,7 +43,7 @@ public abstract class AbstractGeneratorServiceImpl implements Generator {
     }
     /**
      * 获取Model的Package
-     * @return
+     * @return  Model的Package
      */
     protected String getModelPackage(){
         GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
@@ -54,7 +54,7 @@ public abstract class AbstractGeneratorServiceImpl implements Generator {
     }
     /**
      * 获取Model名称
-     * @return
+     * @return  Model名称
      */
     protected String getEntityName(){
         GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
@@ -68,7 +68,7 @@ public abstract class AbstractGeneratorServiceImpl implements Generator {
 
     /**
      * 获取生成代码关键名称   和Model相比，不带默认Model
-     * @return
+     * @return  keyword
      */
     protected String getKeywordName(){
         GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
@@ -81,7 +81,7 @@ public abstract class AbstractGeneratorServiceImpl implements Generator {
     }
     /**
      * 获取Model location
-     * @return
+     * @return  Model location
      */
     protected String getModelLocation(){
         GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
@@ -90,7 +90,7 @@ public abstract class AbstractGeneratorServiceImpl implements Generator {
     }
     /**
      * 获取Model的description
-     * @return
+     * @return  Model的description
      */
     protected String getModelDescription(){
         GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
@@ -112,7 +112,7 @@ public abstract class AbstractGeneratorServiceImpl implements Generator {
 
     /**
      * 获取Dao的Package
-     * @return
+     * @return  Dao的Package
      */
     protected String getDaoPackage(){
         GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
@@ -123,7 +123,7 @@ public abstract class AbstractGeneratorServiceImpl implements Generator {
     }
     /**
      * 获取Dao名称
-     * @return
+     * @return  Dao名称
      */
     protected String getDaoName(){
         GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
@@ -135,7 +135,7 @@ public abstract class AbstractGeneratorServiceImpl implements Generator {
     }
     /**
      * 获取Dao location
-     * @return
+     * @return  Dao location
      */
     protected String getDaoLocation(){
         GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
@@ -144,7 +144,7 @@ public abstract class AbstractGeneratorServiceImpl implements Generator {
     }
     /**
      * 获取Dao的description
-     * @return
+     * @return  Dao的description
      */
     protected String getDaoDescription(){
         GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
@@ -165,7 +165,7 @@ public abstract class AbstractGeneratorServiceImpl implements Generator {
     }
     /**
      * 获取service的Package
-     * @return
+     * @return  service的Package
      */
     protected String getServicePackage(){
         GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
@@ -176,7 +176,7 @@ public abstract class AbstractGeneratorServiceImpl implements Generator {
     }
     /**
      * 获取Service名称
-     * @return
+     * @return  Service名称
      */
     protected String getServiceName(){
         GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
@@ -188,7 +188,7 @@ public abstract class AbstractGeneratorServiceImpl implements Generator {
     }
     /**
      * 获取service location
-     * @return
+     * @return  service location
      */
     protected String getServiceLocation(){
         GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
@@ -197,7 +197,7 @@ public abstract class AbstractGeneratorServiceImpl implements Generator {
     }
     /**
      * 获取service的description
-     * @return
+     * @return  service的description
      */
     protected String getServiceDescription(){
         GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
@@ -219,7 +219,7 @@ public abstract class AbstractGeneratorServiceImpl implements Generator {
 
     /**
      * 获取ServiceImpl的Package
-     * @return
+     * @return  ServiceImpl的Package
      */
     protected String getServiceImplPackage(){
         GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
@@ -230,7 +230,7 @@ public abstract class AbstractGeneratorServiceImpl implements Generator {
     }
     /**
      * 获取ServiceImpl的description
-     * @return
+     * @return  ServiceImpl的description
      */
     protected String getServiceImplDescription(){
         GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
@@ -251,7 +251,7 @@ public abstract class AbstractGeneratorServiceImpl implements Generator {
     }
     /**
      * 获取ServiceImpl的serviceIOCName
-     * @return
+     * @return  ServiceImpl的serviceIOCName
      */
     protected String getServiceIOCName(){
         GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
@@ -263,7 +263,7 @@ public abstract class AbstractGeneratorServiceImpl implements Generator {
     }
     /**
      * 获取ServiceImpl名称
-     * @return
+     * @return  ServiceImpl名称
      */
     protected String getServiceImplName(){
         GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
@@ -275,7 +275,7 @@ public abstract class AbstractGeneratorServiceImpl implements Generator {
     }
     /**
      * 获取ServiceImpl location
-     * @return
+     * @return  ServiceImpl location
      */
     protected String getServiceImplLocation(){
         GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
@@ -284,7 +284,7 @@ public abstract class AbstractGeneratorServiceImpl implements Generator {
     }
     /**
      * 获取proxy的Package
-     * @return
+     * @return  proxy的Package
      */
     protected String getProxyPackage(){
         GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
@@ -295,7 +295,7 @@ public abstract class AbstractGeneratorServiceImpl implements Generator {
     }
     /**
      * 获取proxy名称
-     * @return
+     * @return  proxy名称
      */
     protected String getProxyName(){
         GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
@@ -307,7 +307,7 @@ public abstract class AbstractGeneratorServiceImpl implements Generator {
     }
     /**
      * 获取proxy location
-     * @return
+     * @return  proxy location
      */
     protected String getProxyLocation(){
         GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
@@ -316,7 +316,7 @@ public abstract class AbstractGeneratorServiceImpl implements Generator {
     }
     /**
      * 获取proxy的description
-     * @return
+     * @return  proxy的description
      */
     protected String getProxyDescription(){
         GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
@@ -337,7 +337,7 @@ public abstract class AbstractGeneratorServiceImpl implements Generator {
     }
     /**
      * 获取proxyImpl的Package
-     * @return
+     * @return  proxyImpl的Package
      */
     protected String getProxyImplPackage(){
         GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
@@ -348,7 +348,7 @@ public abstract class AbstractGeneratorServiceImpl implements Generator {
     }
     /**
      * 获取ProxyImpl的description
-     * @return
+     * @return  ProxyImpl的description
      */
     protected String getProxyImplDescription(){
         GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
@@ -369,7 +369,7 @@ public abstract class AbstractGeneratorServiceImpl implements Generator {
     }
     /**
      * 获取ProxyImpl的proxyIOCName
-     * @return
+     * @return  ProxyImpl的proxyIOCName
      */
     protected String getProxyIOCName(){
         GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
@@ -381,7 +381,7 @@ public abstract class AbstractGeneratorServiceImpl implements Generator {
     }
     /**
      * 获取ProxyImpl名称
-     * @return
+     * @return  ProxyImpl名称
      */
     protected String getProxyImplName(){
         GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
@@ -393,7 +393,7 @@ public abstract class AbstractGeneratorServiceImpl implements Generator {
     }
     /**
      * 获取ProxyImpl location
-     * @return
+     * @return  ProxyImpl location
      */
     protected String getProxyImplLocation(){
         GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
@@ -402,7 +402,7 @@ public abstract class AbstractGeneratorServiceImpl implements Generator {
     }
     /**
      * 获取controller的Package
-     * @return
+     * @return  controller的Package
      */
     protected String getControllerPackage(){
         GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
@@ -413,7 +413,7 @@ public abstract class AbstractGeneratorServiceImpl implements Generator {
     }
     /**
      * 获取controller的description
-     * @return
+     * @return  controller的description
      */
     protected String getControllerDescription(){
         GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
@@ -435,7 +435,7 @@ public abstract class AbstractGeneratorServiceImpl implements Generator {
 
     /**
      * 获取Controller的controllerIOCName
-     * @return
+     * @return  Controller的controllerIOCName
      */
     protected String getControllerIOCName(){
         GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
@@ -448,7 +448,7 @@ public abstract class AbstractGeneratorServiceImpl implements Generator {
 
     /**
      * 获取Controller的request mapper
-     * @return
+     * @return  Controller的request mapper
      */
     protected String getControllerRequestMapping(){
         GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
@@ -461,7 +461,7 @@ public abstract class AbstractGeneratorServiceImpl implements Generator {
 
     /**
      * 获取controller名称
-     * @return
+     * @return  controller名称
      */
     protected String getControllerName(){
         GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();
@@ -474,7 +474,7 @@ public abstract class AbstractGeneratorServiceImpl implements Generator {
 
     /**
      * 获取Controller location
-     * @return
+     * @return  Controller location
      */
     protected String getControllerLocation(){
         GenDTO genDTO = CodegenConfig.getInstance().getGenDTO();

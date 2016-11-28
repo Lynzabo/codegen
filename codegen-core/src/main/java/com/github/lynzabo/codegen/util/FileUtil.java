@@ -14,8 +14,8 @@ import java.io.File;
 public class FileUtil {
     /**
      * 获取绝对路径   支持相对参数和绝对路径，并转换路径\\为/表示
-     * @param location
-     * @return
+     * @param location  绝对路径/相对路径
+     * @return  绝对路径
      */
     public static String getReallyDir(String location){
         File file =new File(location);

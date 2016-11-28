@@ -18,7 +18,7 @@ import java.util.Map;
 public interface Connector {
     /**
      * 获取数据库连接
-     * @return
+     * @return  connection
      */
     Connection getConnection();
 
@@ -29,21 +29,21 @@ public interface Connector {
 
     /**
      * 获取数据库元数据信息
-     * @return
+     * @return  db meta info
      */
     DatabaseMetaData getDatabaseMetaData();
 
     /**
      * 获取表/视图备注
-     * @param tableName
-     * @return
+     * @param tableName table name
+     * @return  表注释
      */
     String getTableRemark(String tableName);
 
     /**
      * 获取表各个列信息
-     * @param tableName
-     * @return
+     * @param tableName table name
+     * @return  表个列信
      */
     Map<String,RenderDataDTO.Column> getColumns(String tableName);
 

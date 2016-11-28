@@ -32,9 +32,9 @@ public final class StringUtil {
 
     /**
      * 转换下划线格式字符串为驼峰命名
-     * @param _name
+     * @param _name underline name
      * @param firstNameIsUpper  首字母是否大写
-     * @return
+     * @return  camel name
      */
     public static String underline2Camel(String _name,boolean firstNameIsUpper){
         String camelStr = "";
@@ -59,8 +59,8 @@ public final class StringUtil {
 
     /**
      * 修改字符串第一个字母为大写
-     * @param string
-     * @return
+     * @param string    string
+     * @return  首字母大写字符串
      */
     public static String firstUpper(String string) {
         String str = string.substring(0, 1).toUpperCase() + string.substring(1);
@@ -70,8 +70,8 @@ public final class StringUtil {
     /**
      * 字符串截断1，并修改第一个字符为小写
      * 如字符串aSDfg，经该接口后变成sDfg。
-     * @param string
-     * @return
+     * @param string    string
+     * @return  截断了第一位，并且首字母小写字符串
      */
     public static String sub1Upper(String string) {
         String sr = string.substring(1);
@@ -81,8 +81,8 @@ public final class StringUtil {
 
     /**
      * 字符串首字符小写
-     * @param sr
-     * @return
+     * @param sr    string
+     * @return  首字母小写字符串
      */
     public static String firstLower(String sr) {
         sr = sr.substring(0,1).toLowerCase() + sr.substring(1);

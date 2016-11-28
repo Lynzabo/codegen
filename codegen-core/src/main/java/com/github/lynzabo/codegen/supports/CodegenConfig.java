@@ -32,6 +32,7 @@ public enum CodegenConfig {
 
     /**
      * 解析配置
+     * @param codegenPath   codegen.yaml path
      */
     public void initConfig(String codegenPath) {
         logger.info("init config,{}", codegenPath);
@@ -316,15 +317,15 @@ public enum CodegenConfig {
 
     /**
      * 获取数据源信息
-     * @return
+     * @return  DataSource
      */
     public DataSource getDataSource() {
         return dataSource;
     }
 
     /**
-     * 获取sql -> Java 类型映射
-     * @return
+     * 获取sql - Java 类型映射
+     * @return  mapper
      */
     public Map<String, Map<String, String>> getMapper() {
         return mapper;
@@ -332,14 +333,14 @@ public enum CodegenConfig {
 
     /**
      * 获取要gen的所有表
-     * @return
+     * @return  table name
      */
     public String getTable() {
         return table;
     }
     /**
      * 生成代码配置
-     * @return
+     * @return  配置
      */
     public GenDTO getGenDTO() {
         return genDTOBuilder.build();
@@ -351,7 +352,7 @@ public enum CodegenConfig {
 
     /**
      * 获取自定义生成器环境变量
-     * @return
+     * @return  properties
      */
     public Map getProperties() {
         return properties;
@@ -359,7 +360,7 @@ public enum CodegenConfig {
 
     /**
      * 获取codegen工作根目录 (codegen.yaml文件和template目录所在目录
-     * @return
+     * @return  当前目录
      */
     public String getWorkDir() {
         return workDir;

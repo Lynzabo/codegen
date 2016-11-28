@@ -42,9 +42,11 @@ public class FreemarkerUtil {
 
     /**
      * 渲染到字符串
-     * @param dataItems
-     * @param templateName
-     * @return
+     * @param dataItems data
+     * @param templateName  template name
+     * @return  string
+     * @throws IOException  IOException
+     * @throws TemplateException    TemplateException
      */
     public static String renderToStr(Map dataItems,String templateName) throws IOException, TemplateException {
         Template temp = cfg.getTemplate(templateName);
@@ -53,11 +55,14 @@ public class FreemarkerUtil {
         return out.toString();
     }
 
+
     /**
      * 渲染到文件
-     * @param dataItems
-     * @param templateName
+     * @param dataItems data
+     * @param templateName  template name
      * @param outFilePath   文件路径 可以是绝对路径、相对路径
+     * @throws IOException  IOException
+     * @throws TemplateException    TemplateException
      */
     public static void renderToFile(Map dataItems,String templateName,String outFilePath) throws IOException, TemplateException {
         String abstPath = FileUtil.getReallyDir(outFilePath);

@@ -77,6 +77,7 @@ public class DatabaseMetaDateApplication {
 
     /**
      * 获得该用户下面的所有表
+     * @param schemaName    db name
      */
     public void getAllTableList(String schemaName) {
         try {
@@ -97,6 +98,7 @@ public class DatabaseMetaDateApplication {
 
     /**
      * 获得该用户下面的所有视图
+     * @param schemaName    db name
      */
     public void getAllViewList(String schemaName) {
         try{
@@ -131,6 +133,8 @@ public class DatabaseMetaDateApplication {
 
     /**
      * 获得表或视图中的所有列信息
+     * @param schemaName    db name
+     * @param tableName table name
      */
     public void getTableColumns(String schemaName, String tableName) {
 
@@ -185,6 +189,8 @@ public class DatabaseMetaDateApplication {
 
     /**
      * 获得一个表的索引信息
+     * @param schemaName    db name
+     * @param tableName table name
      */
     public void getIndexInfo(String schemaName, String tableName) {
         try{
@@ -208,6 +214,8 @@ public class DatabaseMetaDateApplication {
 
     /**
      * 获得一个表的主键信息
+     * @param schemaName    db name
+     * @param tableName table name
      */
     public void getAllPrimaryKeys(String schemaName, String tableName) {
         try{
@@ -226,6 +234,8 @@ public class DatabaseMetaDateApplication {
 
     /**
      * 获得一个表的外键信息
+     * @param schemaName    db name
+     * @param tableName table name
      */
     public void getAllExportedKeys(String schemaName, String tableName) {
 

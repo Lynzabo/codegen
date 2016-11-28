@@ -6,7 +6,7 @@
 
     <groupId>com.github.lynzabo.codegen</groupId>
     <artifactId>codegen</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0-RELEASE</version>
     <modules>
         <module>codegen-core</module>
         <module>codegen-mavenplugin</module>
@@ -253,9 +253,11 @@
                         <version>1.6.3</version>
                         <extensions>true</extensions>
                         <configuration>
-                            <serverId>nexus-release</serverId>
+                            <serverId>sonatype-releases</serverId>
                             <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                            <!--设置手动close staging Repositories,默认为false，false代表需要到staging Repositories设置你
+                            的构建成closed，建议设置成false。进入https://oss.sonatype.org并登陆，验证合法性，并closed -->
+                            <autoReleaseAfterClose>false</autoReleaseAfterClose>
                         </configuration>
                     </plugin>
                     <!-- Source -->
@@ -285,6 +287,10 @@
                                 </goals>
                             </execution>
                         </executions>
+                        <configuration>
+                            <!--jdk1.8对doc语法要求严格，忽略无效的标签-->
+                            <additionalparam>-Xdoclint:none</additionalparam>
+                        </configuration>
                     </plugin>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
@@ -316,6 +322,16 @@
             <id>codegen-Release repository</id>
             <name>Letv.com Repository</name>
             <url>http://maven.aliyun.com/nexus/content/repositories/central</url>
+        </repository>
+        <repository>
+            <id>letv.public repository</id>
+            <name>Letv.com Repository</name>
+            <url>http://maven.letv.cn/nexus/content/repositories/central/</url>
+        </repository>
+        <repository>
+            <id>oss.sonatype.org repository</id>
+            <name>oss.sonatype.org Repository</name>
+            <url>https://oss.sonatype.org/content/groups/central-staging/</url>
         </repository>
     </repositories>
     <!--私有仓库配置  end-->

@@ -3,12 +3,12 @@
     <parent>
         <artifactId>codegen</artifactId>
         <groupId>com.github.lynzabo.codegen</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0-RELEASE</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <packaging>maven-plugin</packaging>
     <artifactId>codegen-mavenplugin</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0-RELEASE</version>
 
     <name>codegen-mavenplugin</name>
     <url>http://maven.apache.org</url>
@@ -35,7 +35,7 @@
         <dependency>
             <groupId>com.github.lynzabo.codegen</groupId>
             <artifactId>codegen-core</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0-RELEASE</version>
         </dependency>
     </dependencies>
     <build>
@@ -53,7 +53,7 @@
                     <execution>
                         <id>generated-helpmojo</id>
                         <goals>
-                            <goal>helpmojo</goal>
+                            <goal>help</goal>
                         </goals>
                     </execution>
                 </executions>
