@@ -66,11 +66,11 @@
 		<!-- 指定mapping.xml文件位置，否则必须让mapping.xml位置必须和dao的接口类必须在一个文件 -->
 		<property name="mapperLocations" value="classpath:mybatis/*Mapper.xml" />
 		<!-- 定义别名，省去在mapping.xml引用时候指定全名 -->
-		<property name="typeAliasesPackage" value="com.lynzabo.testmybatis.model" />
+		<property name="typeAliasesPackage" value="com.github.lynzabo.testmybatis.model" />
 	</bean>
 	<!-- 3. mybatis 自动扫描加载 Sql 映射文件 : MapperScannerConfigurer -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.lynzabo.testmybatis.dao" />
+		<property name="basePackage" value="com.github.lynzabo.testmybatis.dao" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
 	<!-- 4. 事务管理 : DataSourceTransactionManager -->

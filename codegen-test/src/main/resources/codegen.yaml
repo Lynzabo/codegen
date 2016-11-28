@@ -103,7 +103,7 @@ table: SQL_DUMP
 # 生成代码配置
 gen:
   # 生成包名
-  package: com.lynzabo.testmybatis
+  package: com.github.lynzabo.testmybatis
   # 如下几个模块，填写哪块，生成哪块
   # mapper.xml信息
   sqlMapper:
@@ -125,7 +125,7 @@ gen:
     # 生成位置  可选  默认{projectPath}/src/main/java
     location: src/main/java
     # 生成包名称  可选  默认{package}.model
-    package: com.lynzabo.testmybatis.model
+    package: com.github.lynzabo.testmybatis.model
     # 生成类名  可选  默认{table驼峰命名}Model
 #    name: UserModel
     # 使用模板
@@ -141,7 +141,7 @@ gen:
     # 生成位置  可选  默认{projectPath}/src/main/java
     location: src/main/java
     # 生成包名称  可选  默认{package}.dao
-    package: com.lynzabo.testmybatis.dao
+    package: com.github.lynzabo.testmybatis.dao
     # 生成接口名  可选  默认I{table驼峰命名}Dao
 #    name: IUserDao
     # 使用模板
@@ -157,7 +157,7 @@ gen:
     # 生成位置  可选  默认{projectPath}/src/main/java
     location: src/main/java
     # 生成包名称  可选  默认{package}.service
-    package: com.lynzabo.testmybatis.service
+    package: com.github.lynzabo.testmybatis.service
     # 生成接口名  可选  默认I{table驼峰命名}Service
 #    name: IUserService
     # 使用模板
@@ -173,7 +173,7 @@ gen:
     # 生成位置  可选  默认{projectPath}/src/main/java
     location: src/main/java
     # 生成包名称  可选  默认{package}.service.impl
-    package: com.lynzabo.testmybatis.service.impl
+    package: com.github.lynzabo.testmybatis.service.impl
     # 生成类名  可选  默认{table驼峰命名}ServiceImpl
 #    name: UserServiceImpl
     # Spring 服务层服务注解名称  可选  默认{table驼峰命名，首字母小写}Service  效果@Service("userService")
@@ -191,7 +191,7 @@ gen:
     # 生成位置  可选  默认{projectPath}/src/main/java
     location: src/main/java
     # 生成包名称  可选  默认{package}.proxy
-    package: com.lynzabo.testmybatis.proxy
+    package: com.github.lynzabo.testmybatis.proxy
     # 生成接口名  可选  默认I{table驼峰命名}Proxy
 #    name: IUserProxy
     # 使用模板
@@ -207,7 +207,7 @@ gen:
     # 生成位置  可选  默认{projectPath}/src/main/java
     location: src/main/java
     # 生成包名称  可选  默认{package}.proxy.impl
-    package: com.lynzabo.testmybatis.proxy.impl
+    package: com.github.lynzabo.testmybatis.proxy.impl
     # 生成类名  可选  默认{table驼峰命名}ProxyImpl
 #    name: UserProxyImpl
     # Spring component层代理注解名称  可选  默认{table驼峰命名，首字母小写}Proxy  效果@Component("userProxy")
@@ -225,7 +225,7 @@ gen:
     # 生成位置  可选  默认{projectPath}/src/main/java
     location: src/main/java
     # 生成包名称  可选  默认{package}.controller
-    package: com.lynzabo.testmybatis.controller
+    package: com.github.lynzabo.testmybatis.controller
     # 生成类名  可选  默认{table驼峰命名}Controller
 #    name: UserController
     # Spring Controller层注解名称  可选  默认为@Controller  如下制定为userController  则生成效果@Controller("userController")
@@ -239,34 +239,6 @@ gen:
     # 自定义生成器环境变量  请在ftl里面按照yaml数据类型获取使用
     properties:
       var1: 'test'
-
-  # enumeration信息
-  enumeration:
-    # 生成位置  可选  默认{projectPath}/src/main/java
-    location: src/main/java
-    # 生成包名称  可选  默认{package}.enumeration
-    package: com.lynzabo.testmybatis.enumeration
-    # 生成枚举名  可选  默认{table驼峰命名}Status
-#    name: UserStatus
-    # 使用模板
-    ftl: enumeration.ftl
-    # 介绍  可选  默认为{table表名注释} enumeration 如果表名注释为“用户管理”，则此为用户管理 enumeration
-    description: "用户enumeration"
-    # 自定义生成器环境变量  请在ftl里面按照yaml数据类型获取使用
-    properties:
-      var1: 'test'
-
-  # interface信息
-  interface:
-    location: src/main/java
-#    name: UserStatus
-    # 使用模板
-    ftl: enumeration.ftl
-    description: "用户enumeration"
-    # 自定义生成器环境变量  请在ftl里面按照yaml数据类型获取使用
-    properties:
-      var1: 'test'
-#    生成md需要的基本接口文本
 
 # 自定义生成器环境变量  请在ftl里面按照yaml数据类型获取使用
 properties:

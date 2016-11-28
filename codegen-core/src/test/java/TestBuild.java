@@ -2,7 +2,7 @@
  * Copyright (c) 2016 乐视云计算有限公司（lecloud.com）. All rights reserved
  */
 
-import com.lynzabo.codegen.model.ServiceImplDTO;
+import com.github.lynzabo.codegen.model.ServiceImplDTO;
 
 /**
  *
