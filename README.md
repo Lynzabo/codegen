@@ -1,5 +1,9 @@
-# codegen
+codegen
+======================
 > Java开发，代码生成利器
+
+[![Build Status](https://travis-ci.org/Lynzabo/codegen.svg?branch=master)](https://travis-ci.org/Lynzabo/codegen)
+
 
 只要Java开发，大家都用得着。
 
