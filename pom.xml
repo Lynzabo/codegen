@@ -4,16 +4,35 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.lynzabo.codegen</groupId>
+    <groupId>com.github.lynzabo.codegen</groupId>
     <artifactId>codegen</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0-RELEASE</version>
     <modules>
         <module>codegen-core</module>
         <module>codegen-mavenplugin</module>
         <module>codegen-test</module>
     </modules>
     <packaging>pom</packaging>
+    <name>codegen</name>
 
+    <url>https://github.com/Lynzabo/codegen</url>
+    <description>https://github.com/Lynzabo/codegen</description>
+    <organization>
+        <name>Le</name>
+        <url>http://www.le.com</url>
+    </organization>
+
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+    <scm>
+        <url>scm:git:git@github.com:Lynzabo/codegen.git</url>
+        <connection>scm:git:git@github.com:Lynzabo/codegen.git</connection>
+        <tag>codegen</tag>
+    </scm>
     <developers>
         <developer>
             <name>Lynzabo</name>
@@ -179,30 +198,140 @@
                 <artifactId>freemarker</artifactId>
                 <version>2.3.19</version>
             </dependency>
+            <!--Maven plugin begin-->
+            <dependency>
+                <groupId>org.apache.maven</groupId>
+                <artifactId>maven-plugin-api</artifactId>
+                <version>3.0.3</version>
+            </dependency>
+            <!-- 否则Mojo中的org.apache.maven.model.Resource，无法解析 -->
+            <dependency>
+                <groupId>org.apache.maven</groupId>
+                <artifactId>maven-model</artifactId>
+                <version>2.2.1</version>
+            </dependency>
+            <!--Maven plugin end-->
         </dependencies>
     </dependencyManagement>
+    <profiles>
+        <profile>
+            <id>local</id>
+            <!--deploy begin-->
+            <distributionManagement>
+                <!--deploy url-->
+                <snapshotRepository>
+                    <id>project-snapshots</id>
+                    <name>Projects SnapShot repository</name>
+                    <url>http://10.75.136.223:8083/nexus/content/repositories/snapshots/</url>
+                </snapshotRepository>
+                <repository>
+                    <id>project-release</id>
+                    <name>Projects Release repository</name>
+                    <url>http://10.75.136.223:8083/nexus/content/repositories/releases/</url>
+                </repository>
+            </distributionManagement>
+            <!--deploy end-->
+        </profile>
+        <!--release-->
+        <profile>
+            <id>release</id>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>sonatype-snapshots</id>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+                </snapshotRepository>
+                <repository>
+                    <id>sonatype-releases</id>
+                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+                </repository>
+            </distributionManagement>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>1.6.3</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>sonatype-releases</serverId>
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <!--设置手动close staging Repositories,默认为false，false代表需要到staging Repositories设置你
+                            的构建成closed，建议设置成false。进入https://oss.sonatype.org并登陆，验证合法性，并closed -->
+                            <autoReleaseAfterClose>false</autoReleaseAfterClose>
+                        </configuration>
+                    </plugin>
+                    <!-- Source -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>2.2.1</version>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- Javadoc -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>2.9.1</version>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <!--jdk1.8对doc语法要求严格，忽略无效的标签-->
+                            <additionalparam>-Xdoclint:none</additionalparam>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.5</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
     <!--私有仓库配置  begin-->
     <repositories>
         <!--私有仓库 url-->
         <repository>
-            <id>Matrix-Thirdparty repository</id>
+            <id>codegen-Snapshot repository</id>
             <name>Letv.com Repository</name>
-            <url>http://10.75.136.223:8083/nexus/content/repositories/central/</url>
+            <url>http://maven.aliyun.com/nexus/content/repositories/central</url>
         </repository>
         <repository>
-            <id>Matrix-Snapshot repository</id>
+            <id>codegen-Release repository</id>
             <name>Letv.com Repository</name>
-            <url>http://10.75.136.223:8083/nexus/content/repositories/central/</url>
-        </repository>
-        <repository>
-            <id>Matrix-Release repository</id>
-            <name>Letv.com Repository</name>
-            <url>http://10.75.136.223:8083/nexus/content/repositories/central/</url>
+            <url>http://maven.aliyun.com/nexus/content/repositories/central</url>
         </repository>
         <repository>
             <id>letv.public repository</id>
             <name>Letv.com Repository</name>
-            <url>http://10.75.136.223:8083/nexus/content/repositories/central/</url>
+            <url>http://maven.letv.cn/nexus/content/repositories/central/</url>
+        </repository>
+        <repository>
+            <id>oss.sonatype.org repository</id>
+            <name>oss.sonatype.org Repository</name>
+            <url>https://oss.sonatype.org/content/groups/central-staging/</url>
         </repository>
     </repositories>
     <!--私有仓库配置  end-->
@@ -212,7 +341,7 @@
         <pluginRepository>
             <id>letv.public plugin</id>
             <name>Letv.com Repository</name>
-            <url>http://10.75.136.223:8083/nexus/content/repositories/central/</url>
+            <url>http://maven.aliyun.com/nexus/content/repositories/central</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -221,19 +350,4 @@
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
-    <!--deploy begin-->
-    <distributionManagement>
-        <!--deploy url-->
-        <repository>
-            <id>project-release</id>
-            <name>Projects Release repository</name>
-            <url>http://10.75.136.223:8083/nexus/content/repositories/releases/</url>
-        </repository>
-        <snapshotRepository>
-            <id>project-snapshots</id>
-            <name>Projects SnapShot repository</name>
-            <url>http://10.75.136.223:8083/nexus/content/repositories/snapshots/</url>
-        </snapshotRepository>
-    </distributionManagement>
-    <!--deploy end-->
 </project>
