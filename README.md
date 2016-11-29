@@ -1,7 +1,6 @@
 codegen
 ======================
 
-[![Join the chat at https://gitter.im/codegen-chat/Lobby](https://badges.gitter.im/codegen-chat/Lobby.svg)](https://gitter.im/codegen-chat/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 > Java开发，代码生成利器
 
 [![Build Status](https://travis-ci.org/Lynzabo/codegen.svg?branch=master)](https://travis-ci.org/Lynzabo/codegen)
