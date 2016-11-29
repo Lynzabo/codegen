@@ -3,7 +3,7 @@ codegen
 > Java开发，代码生成利器
 
 [![Build Status](https://travis-ci.org/Lynzabo/codegen.svg?branch=master)](https://travis-ci.org/Lynzabo/codegen)
-
+[![Coverage Status](https://coveralls.io/repos/github/Lynzabo/codegen/badge.svg?branch=master)](https://coveralls.io/github/Lynzabo/codegen?branch=master)
 
 只要Java开发，大家都用得着。
 
